@@ -82,11 +82,9 @@ const Index = () => {
         );
       }
       case "project-detail": {
-        // Find project across all folders
-        const { folders } = require("@/data/portfolioData");
         let foundProject: ProjectItem | null = null;
         for (const f of folders) {
-          const proj = f.items.find((p: ProjectItem) => p.id === win.contentId);
+          const proj = f.items.find((p) => p.id === win.contentId);
           if (proj) { foundProject = proj; break; }
         }
         return <ProjectDetail project={foundProject} />;
