@@ -1,12 +1,25 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import MenuBar from "@/components/MenuBar";
+import Dock from "@/components/Dock";
+import DesktopIcon from "@/components/DesktopIcon";
+import macintoshHd from "@/assets/macintosh-hd.png";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <div className="retro-desktop-bg h-screen w-screen overflow-hidden relative">
+      {/* Menu Bar */}
+      <MenuBar />
+
+      {/* Desktop Area */}
+      <div className="absolute inset-0 pt-[25px] pb-[58px]">
+        <DesktopIcon
+          label="Macintosh HD"
+          icon={macintoshHd}
+          position={{ top: "16px", right: "24px" }}
+        />
       </div>
+
+      {/* Dock */}
+      <Dock />
     </div>
   );
 };
