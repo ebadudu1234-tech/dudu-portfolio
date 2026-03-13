@@ -8,7 +8,7 @@ import FolderBrowser from "@/components/FolderBrowser";
 import ProjectDetail from "@/components/ProjectDetail";
 import BootScreen from "@/components/BootScreen";
 import { useWindowManager } from "@/hooks/useWindowManager";
-import { getFolderById, type ProjectItem } from "@/data/portfolioData";
+import { getFolderById, folders, type ProjectItem } from "@/data/portfolioData";
 import macintoshHd from "@/assets/macintosh-hd.png";
 import desktopWallpaper from "@/assets/desktop-wallpaper.jpg";
 
