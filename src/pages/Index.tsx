@@ -8,7 +8,7 @@ import FolderBrowser from "@/components/FolderBrowser";
 import ProjectDetail from "@/components/ProjectDetail";
 import BootScreen from "@/components/BootScreen";
 import { useWindowManager } from "@/hooks/useWindowManager";
-import { getFolderById, type ProjectItem } from "@/data/portfolioData";
+import { getFolderById, folders, type ProjectItem } from "@/data/portfolioData";
 import macintoshHd from "@/assets/macintosh-hd.png";
 import desktopWallpaper from "@/assets/desktop-wallpaper.jpg";
 
@@ -82,14 +82,12 @@ const Index = () => {
         );
       }
       case "project-detail": {
-        // Find project across all folders
-        const allFolders = ["product-design", "branding", "visual-design", "case-studies", "about-me", "contact"];
-        for (const fId of allFolders) {
-          const f = getFolderById(fId);
-          const proj = f?.items.find((p) => p.id === win.contentId);
-          if (proj) return <ProjectDetail project={proj} />;
+        let foundProject: ProjectItem | null = null;
+        for (const f of folders) {
+          const proj = f.items.find((p) => p.id === win.contentId);
+          if (proj) { foundProject = proj; break; }
         }
-        return <div className="p-3 text-[11px] font-retro">Project not found.</div>;
+        return <ProjectDetail project={foundProject} />;
       }
       default:
         return null;

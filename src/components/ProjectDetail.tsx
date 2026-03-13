@@ -1,14 +1,55 @@
 import { type ProjectItem } from "@/data/portfolioData";
+import emptyStatePlaceholder from "@/assets/empty-state-placeholder.png";
 
 interface ProjectDetailProps {
-  project: ProjectItem;
+  project: ProjectItem | null;
 }
 
+const ProjectNotFound = () => (
+  <div className="p-6 font-retro flex flex-col items-center justify-center text-center gap-3">
+    <img
+      src={emptyStatePlaceholder}
+      alt="Project not available"
+      className="w-[80px] h-[80px] object-contain opacity-70"
+    />
+    <p className="text-[12px] text-muted-foreground">
+      Project not available yet.
+    </p>
+  </div>
+);
+
 const ProjectDetail = ({ project }: ProjectDetailProps) => {
+  if (!project) return <ProjectNotFound />;
+
+  const hasThumb = !!project.thumbnail;
+  const hasImages = project.images && project.images.length > 0;
+
   return (
     <div className="p-4 font-retro">
+      {/* Thumbnail — only if exists */}
+      {hasThumb && (
+        <div className="retro-inset mb-4 overflow-hidden">
+          <img
+            src={project.thumbnail}
+            alt={project.title}
+            className="w-full h-[180px] object-cover block"
+          />
+        </div>
+      )}
+
+      {/* Extra images — only if exist */}
+      {hasImages && (
+        <div className="grid grid-cols-2 gap-2 mb-4">
+          {project.images!.map((img, i) => (
+            <div key={i} className="retro-inset overflow-hidden">
+              <img src={img} alt="" className="w-full h-[100px] object-cover block" />
+            </div>
+          ))}
+        </div>
+      )}
+
       {/* Header */}
-      <div className="mb-4">
+      <div className="mb-3">
         <h2 className="text-[16px] font-bold text-foreground mb-1">
           {project.title}
         </h2>
@@ -18,34 +59,10 @@ const ProjectDetail = ({ project }: ProjectDetailProps) => {
         </div>
       </div>
 
-      {/* Image area placeholder */}
-      <div className="retro-inset bg-secondary mb-4 flex items-center justify-center h-[180px] text-[11px] text-muted-foreground">
-        {project.thumbnail ? (
-          <img
-            src={project.thumbnail}
-            alt={project.title}
-            className="w-full h-full object-cover"
-          />
-        ) : (
-          <span>[ Project Image — Replace with your own ]</span>
-        )}
-      </div>
-
       {/* Description */}
       <p className="text-[12px] text-foreground leading-relaxed whitespace-pre-line mb-4">
         {project.description}
       </p>
-
-      {/* Extra images placeholder */}
-      {project.images && project.images.length > 0 && (
-        <div className="grid grid-cols-2 gap-2 mb-4">
-          {project.images.map((img, i) => (
-            <div key={i} className="retro-inset bg-secondary h-[100px]">
-              <img src={img} alt="" className="w-full h-full object-cover" />
-            </div>
-          ))}
-        </div>
-      )}
 
       {/* Link button */}
       {project.link && (
