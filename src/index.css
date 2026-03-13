@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Geneva:wght@400&family=Pixelify+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -9,20 +9,20 @@
     --background: 213 60% 72%;
     --foreground: 0 0% 0%;
 
-    --card: 0 0% 85%;
+    --card: 0 0% 93%;
     --card-foreground: 0 0% 0%;
 
     --popover: 0 0% 85%;
     --popover-foreground: 0 0% 0%;
 
     --primary: 0 0% 85%;
-    --primary-foreground: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 75%;
+    --secondary: 0 0% 78%;
     --secondary-foreground: 0 0% 0%;
 
     --muted: 0 0% 90%;
-    --muted-foreground: 0 0% 40%;
+    --muted-foreground: 0 0% 45%;
 
     --accent: 213 60% 62%;
     --accent-foreground: 0 0% 100%;
@@ -30,25 +30,26 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 0 0% 60%;
+    --border: 0 0% 65%;
     --input: 0 0% 75%;
     --ring: 213 60% 52%;
 
     --radius: 0px;
 
     /* Retro Mac tokens */
-    --menubar-bg: 0 0% 90%;
-    --menubar-border: 0 0% 70%;
+    --menubar-bg: 0 0% 92%;
+    --menubar-border: 0 0% 72%;
     --menubar-text: 0 0% 0%;
-    --dock-bg: 0 0% 92%;
+    --dock-bg: 220 8% 88%;
     --dock-border: 0 0% 72%;
     --dock-divider: 0 0% 78%;
     --desktop-bg: 213 55% 72%;
-    --desktop-stripe: 213 55% 68%;
     --icon-label: 0 0% 100%;
     --icon-label-shadow: 0 0% 0%;
     --highlight: 213 80% 45%;
     --highlight-foreground: 0 0% 100%;
+    --window-active-title: 0 0% 78%;
+    --window-inactive-title: 0 0% 88%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -68,7 +69,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Pixelify Sans', 'Chicago', 'Geneva', sans-serif;
+    font-family: 'Pixelify Sans', 'Chicago', 'Geneva', monospace;
     -webkit-font-smoothing: none;
     -moz-osx-font-smoothing: auto;
     cursor: default;
@@ -76,22 +77,10 @@
   }
 }
 
-/* Retro Mac striped desktop background */
-.retro-desktop-bg {
-  background-color: hsl(var(--desktop-bg));
-  background-image: 
-    linear-gradient(
-      0deg,
-      hsl(var(--desktop-stripe)) 1px,
-      transparent 1px
-    );
-  background-size: 100% 2px;
-}
-
 /* Classic Mac inset border */
 .retro-inset {
-  border-top: 1px solid hsl(0 0% 60%);
-  border-left: 1px solid hsl(0 0% 60%);
+  border-top: 1px solid hsl(0 0% 55%);
+  border-left: 1px solid hsl(0 0% 55%);
   border-bottom: 1px solid hsl(0 0% 100%);
   border-right: 1px solid hsl(0 0% 100%);
 }
@@ -100,33 +89,76 @@
 .retro-outset {
   border-top: 1px solid hsl(0 0% 100%);
   border-left: 1px solid hsl(0 0% 100%);
-  border-bottom: 1px solid hsl(0 0% 60%);
-  border-right: 1px solid hsl(0 0% 60%);
+  border-bottom: 1px solid hsl(0 0% 55%);
+  border-right: 1px solid hsl(0 0% 55%);
 }
 
-/* Menu bar style */
+/* Menu bar */
 .retro-menubar {
   background: hsl(var(--menubar-bg));
-  border-bottom: 2px solid hsl(var(--menubar-border));
+  border-bottom: 1px solid hsl(var(--menubar-border));
   box-shadow: 0 1px 0 hsl(0 0% 100%) inset;
 }
 
-/* Dock style */
+/* Dock */
 .retro-dock {
   background: hsl(var(--dock-bg));
   border-top: 1px solid hsl(0 0% 100%);
-  border-bottom: 1px solid hsl(var(--dock-border));
-  box-shadow: 0 -1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.08);
 }
 
 /* Icon text shadow for desktop */
 .retro-icon-label {
   color: hsl(var(--icon-label));
-  text-shadow: 1px 1px 2px hsl(var(--icon-label-shadow));
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.7), 0 0 6px rgba(0,0,0,0.3);
 }
 
 /* Selected state */
 .retro-selected {
   background: hsl(var(--highlight));
   color: hsl(var(--highlight-foreground));
+}
+
+/* Window title bar — active */
+.retro-window-titlebar-active {
+  background: linear-gradient(
+    180deg,
+    hsl(0 0% 90%) 0%,
+    hsl(var(--window-active-title)) 40%,
+    hsl(0 0% 72%) 100%
+  );
+  border-bottom: 1px solid hsl(0 0% 60%);
+}
+
+/* Window title bar — inactive */
+.retro-window-titlebar-inactive {
+  background: hsl(var(--window-inactive-title));
+  border-bottom: 1px solid hsl(0 0% 75%);
+}
+
+/* Scrollbar retro styling */
+::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--card));
+  border-left: 1px solid hsl(0 0% 70%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary));
+  border: 1px solid hsl(0 0% 55%);
+  border-top-color: hsl(0 0% 100%);
+  border-left-color: hsl(0 0% 100%);
+}
+
+::-webkit-scrollbar-button {
+  display: block;
+  height: 14px;
+  background: hsl(var(--primary));
+  border: 1px solid hsl(0 0% 55%);
+  border-top-color: hsl(0 0% 100%);
+  border-left-color: hsl(0 0% 100%);
 }

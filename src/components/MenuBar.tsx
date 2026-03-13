@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 const menuItems = [
   { label: "🍎", isBold: true },
@@ -15,29 +14,34 @@ const MenuBar = () => {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [currentTime, setCurrentTime] = useState(new Date());
 
-  // Update clock every minute
-  useState(() => {
+  useEffect(() => {
     const interval = setInterval(() => setCurrentTime(new Date()), 60000);
     return () => clearInterval(interval);
-  });
+  }, []);
 
-  const formatTime = (date: Date) => {
-    return date.toLocaleTimeString("en-US", {
+  const formatTime = (date: Date) =>
+    date.toLocaleTimeString("en-US", {
       hour: "numeric",
       minute: "2-digit",
       hour12: true,
     });
-  };
+
+  const formatDate = (date: Date) =>
+    date.toLocaleDateString("en-US", {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+    });
 
   return (
-    <div className="retro-menubar fixed top-0 left-0 right-0 z-50 flex h-[25px] items-center justify-between px-2 select-none">
-      <div className="flex items-center gap-0">
+    <div className="retro-menubar fixed top-0 left-0 right-0 z-[60] flex h-[25px] items-center justify-between px-1 select-none">
+      <div className="flex items-center">
         {menuItems.map((item) => (
           <button
             key={item.label}
             className={`px-3 py-0 text-[13px] leading-[25px] font-retro transition-colors ${
               activeMenu === item.label ? "retro-selected" : ""
-            } ${item.isBold ? "text-[16px]" : ""}`}
+            } ${item.isBold ? "text-[15px]" : ""}`}
             onMouseDown={() => setActiveMenu(item.label)}
             onMouseUp={() => setActiveMenu(null)}
             onMouseLeave={() => setActiveMenu(null)}
@@ -46,7 +50,8 @@ const MenuBar = () => {
           </button>
         ))}
       </div>
-      <div className="flex items-center gap-3 text-[12px] font-retro text-foreground pr-1">
+      <div className="flex items-center gap-4 text-[11px] font-retro text-foreground pr-2">
+        <span className="hidden sm:inline">{formatDate(currentTime)}</span>
         <span>{formatTime(currentTime)}</span>
       </div>
     </div>
