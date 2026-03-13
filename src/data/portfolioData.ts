@@ -29,6 +29,11 @@ const aboutMeContent: ProjectItem[] = [
     category: "About Me",
     description:
       "Hello! I'm a designer passionate about creating thoughtful experiences across brand, interface, print, game, and interactive installation projects. I enjoy blending concept, storytelling, and visual systems into work that feels both expressive and meaningful.\n\nMy practice explores how people connect with images, objects, spaces, and digital systems. I care deeply about atmosphere, interaction, and emotional resonance.\n\nFeel free to explore the folders on this desktop to view different parts of my portfolio.",
+    thumbnail: "/images/about/about-cover.jpg",
+    images: [
+      "/images/about/about-1.jpg",
+      "/images/about/about-2.jpg"
+    ],
   },
 ];
 
