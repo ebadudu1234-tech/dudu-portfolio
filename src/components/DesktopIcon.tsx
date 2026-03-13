@@ -5,9 +5,10 @@ interface DesktopIconProps {
   label: string;
   icon: string;
   position?: { top?: string; right?: string; left?: string; bottom?: string };
+  onDoubleClick?: () => void;
 }
 
-const DesktopIcon = ({ label, icon, position = {} }: DesktopIconProps) => {
+const DesktopIcon = ({ label, icon, position = {}, onDoubleClick }: DesktopIconProps) => {
   const [selected, setSelected] = useState(false);
 
   return (
@@ -16,22 +17,28 @@ const DesktopIcon = ({ label, icon, position = {} }: DesktopIconProps) => {
       style={position}
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
-      onClick={() => setSelected(!selected)}
-      onDoubleClick={() => setSelected(true)}
+      transition={{ duration: 0.3, ease: "easeOut", delay: 0.3 }}
+      onClick={(e) => {
+        e.stopPropagation();
+        setSelected(true);
+      }}
+      onDoubleClick={() => {
+        setSelected(true);
+        onDoubleClick?.();
+      }}
     >
-      <div
+      <motion.div
         className={`w-[64px] h-[64px] flex items-center justify-center ${
           selected ? "brightness-75 contrast-125" : ""
         }`}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
       >
         <img src={icon} alt={label} className="w-[56px] h-[56px] object-contain" draggable={false} />
-      </div>
+      </motion.div>
       <span
-        className={`text-[11px] font-retro px-1 leading-tight text-center max-w-[80px] ${
-          selected
-            ? "retro-selected px-1"
-            : "retro-icon-label"
+        className={`text-[11px] font-retro px-1.5 py-0.5 leading-tight text-center max-w-[90px] ${
+          selected ? "retro-selected" : "retro-icon-label"
         }`}
       >
         {label}
