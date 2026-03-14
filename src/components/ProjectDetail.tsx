@@ -10,7 +10,7 @@ const ProjectNotFound = () => (
     <img
       src={emptyStatePlaceholder}
       alt="Project not available"
-      className="w-[80px] h-[80px] object-contain opacity-70"
+      className="w-[100px] h-[100px] object-contain opacity-70"
     />
     <p className="text-[12px] text-muted-foreground">
       Project not available yet.
@@ -22,38 +22,21 @@ const ProjectDetail = ({ project }: ProjectDetailProps) => {
   if (!project) return <ProjectNotFound />;
 
   const hasThumb = !!project.thumbnail;
-  const hasImages = project.images && project.images.length > 0;
+  const hasImages = !!project.images && project.images.length > 0;
+
+  const paragraphs = project.description
+    ? project.description.split("\n\n").filter(Boolean)
+    : [];
+
+  const allImages = [
+    ...(hasThumb ? [project.thumbnail!] : []),
+    ...(hasImages ? project.images! : []),
+  ];
 
   return (
     <div className="p-4 font-retro">
-      {/* Thumbnail — only if exists */}
-      {hasThumb && (
-        <div className="retro-inset mb-4 overflow-hidden">
-          <img
-            src={project.thumbnail}
-            alt={project.title}
-            className="w-full h-[180px] object-cover block"
-          />
-        </div>
-      )}
-
-      {/* Extra images — only if exist */}
-      {hasImages && (
-        <div className="grid grid-cols-2 gap-2 mb-4">
-          {project.images!.map((img, i) => (
-            <div key={i} className="retro-inset overflow-hidden">
-              <img
-                src={img}
-                alt=""
-                className="w-full h-[120px] object-contain block"
-              />
-            </div>
-          ))}
-        </div>
-      )}
-
       {/* Header */}
-      <div className="mb-3">
+      <div className="mb-4">
         <h2 className="text-[16px] font-bold text-foreground mb-1">
           {project.title}
         </h2>
@@ -63,23 +46,63 @@ const ProjectDetail = ({ project }: ProjectDetailProps) => {
         </div>
       </div>
 
-      {/* Description */}
-      <p className="text-[12px] text-foreground leading-relaxed whitespace-pre-line mb-4">
-        {project.description}
-      </p>
+      {/* Alternating text and images */}
+      <div className="space-y-4">
+        {paragraphs.length > 0 ? (
+          paragraphs.map((paragraph, index) => (
+            <div key={index} className="space-y-3">
+              <p className="text-[12px] text-foreground leading-relaxed whitespace-pre-line">
+                {paragraph}
+              </p>
+
+              {allImages[index] && (
+                <div className="retro-inset overflow-hidden">
+                  <img
+                    src={allImages[index]}
+                    alt={`${project.title} image ${index + 1}`}
+                    className="w-full h-[220px] object-cover block"
+                  />
+                </div>
+              )}
+            </div>
+          ))
+        ) : (
+          <>
+            {allImages.map((img, index) => (
+              <div key={index} className="retro-inset overflow-hidden mb-4">
+                <img
+                  src={img}
+                  alt={`${project.title} image ${index + 1}`}
+                  className="w-full h-[220px] object-cover block"
+                />
+              </div>
+            ))}
+
+            <p className="text-[12px] text-foreground leading-relaxed whitespace-pre-line">
+              {project.description}
+            </p>
+          </>
+        )}
+      </div>
 
       {/* Link button */}
       {project.link && (
-        <a
-          href={project.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block retro-outset bg-primary px-4 py-1 text-[11px] font-retro text-foreground hover:brightness-95 active:retro-inset"
-        >
-          View Project →
-        </a>
+        <div className="mt-4">
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block retro-outset bg-primary px-4 py-1 text-[11px] font-retro text-foreground hover:brightness-95 active:retro-inset"
+          >
+            View Project →
+          </a>
+        </div>
       )}
     </div>
+  );
+};
+
+export default ProjectDetail;
   );
 };
 
