@@ -3,6 +3,7 @@ import emptyStatePlaceholder from "@/assets/empty-state-placeholder.png";
 
 interface ProjectDetailProps {
   project: ProjectItem | null;
+  onViewFullProject?: (project: ProjectItem) => void;
 }
 
 const ProjectNotFound = () => (
@@ -18,45 +19,26 @@ const ProjectNotFound = () => (
   </div>
 );
 
-const ProjectDetail = ({ project }: ProjectDetailProps) => {
+const ProjectDetail = ({ project, onViewFullProject }: ProjectDetailProps) => {
   if (!project) return <ProjectNotFound />;
 
-  const hasThumb = !!project.thumbnail;
-  const hasImages = project.images && project.images.length > 0;
+  const coverImage = project.thumbnail || project.heroImage || (project.images && project.images[0]);
 
   return (
     <div className="p-4 font-retro">
-      {/* Thumbnail — only if exists */}
-      {hasThumb && (
+      {/* Cover image — large and prominent */}
+      {coverImage && (
         <div className="retro-inset mb-4 overflow-hidden aspect-[4/3]">
           <img
-            src={project.thumbnail}
+            src={coverImage}
             alt={project.title}
             className="w-full h-full object-cover block"
           />
         </div>
       )}
 
-      {/* Extra images — only if exist */}
-      {hasImages && (
-        <div className="flex flex-col gap-3 mb-4">
-          {project.images!.map((img, i) => (
-            <div
-              key={i}
-              className="retro-inset overflow-hidden aspect-[4/3]"
-            >
-              <img
-                src={img}
-                alt=""
-                className="w-full h-full object-cover block"
-              />
-            </div>
-          ))}
-        </div>
-      )}
-
       {/* Header */}
-      <div className="mb-3">
+      <div className="mb-2">
         <h2 className="text-[16px] font-bold text-foreground mb-1">
           {project.title}
         </h2>
@@ -66,21 +48,19 @@ const ProjectDetail = ({ project }: ProjectDetailProps) => {
         </div>
       </div>
 
-      {/* Description */}
-      <p className="text-[12px] text-foreground leading-relaxed whitespace-pre-line mb-4">
-        {project.description}
+      {/* Short description */}
+      <p className="text-[12px] text-foreground leading-relaxed mb-4">
+        {project.shortDescription || project.description}
       </p>
 
-      {/* Link button */}
-      {project.link && (
-        <a
-          href={project.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block retro-outset bg-primary px-4 py-1 text-[11px] font-retro text-foreground hover:brightness-95 active:retro-inset"
+      {/* View Full Project button */}
+      {onViewFullProject && (
+        <button
+          onClick={() => onViewFullProject(project)}
+          className="inline-block retro-outset bg-primary px-4 py-1.5 text-[11px] font-retro text-foreground hover:brightness-95 active:retro-inset cursor-pointer"
         >
-          View Project →
-        </a>
+          View Full Project →
+        </button>
       )}
     </div>
   );

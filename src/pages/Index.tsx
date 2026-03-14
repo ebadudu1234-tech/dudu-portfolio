@@ -6,14 +6,16 @@ import RetroWindow from "@/components/RetroWindow";
 import MacintoshHDBrowser from "@/components/MacintoshHDBrowser";
 import FolderBrowser from "@/components/FolderBrowser";
 import ProjectDetail from "@/components/ProjectDetail";
+import FullProjectView from "@/components/FullProjectView";
 import BootScreen from "@/components/BootScreen";
 import { useWindowManager } from "@/hooks/useWindowManager";
-import { getFolderById, folders, type ProjectItem } from "@/data/portfolioData";
+import { getFolderById, getProjectById, type ProjectItem } from "@/data/portfolioData";
 import macintoshHd from "@/assets/macintosh-hd.png";
 import desktopWallpaper from "@/assets/desktop-wallpaper.jpg";
 
 const Index = () => {
   const [booted, setBooted] = useState(false);
+  const [fullViewProject, setFullViewProject] = useState<ProjectItem | null>(null);
   const {
     windows,
     activeWindowId,
@@ -56,18 +58,24 @@ const Index = () => {
         title: project.title,
         contentType: "project-detail",
         contentId: project.id,
-        width: 480,
-        height: 440,
+        width: 420,
+        height: 380,
       });
     },
     [openWindow]
   );
 
-  const handleDesktopClick = () => {
-    // Deselect desktop icons when clicking empty space
-  };
+  const handleViewFullProject = useCallback((project: ProjectItem) => {
+    setFullViewProject(project);
+  }, []);
 
-  const renderWindowContent = (win: typeof windows[0]) => {
+  const handleCloseFullView = useCallback(() => {
+    setFullViewProject(null);
+  }, []);
+
+  const handleDesktopClick = () => {};
+
+  const renderWindowContent = (win: (typeof windows)[0]) => {
     switch (win.contentType) {
       case "macintosh-hd":
         return <MacintoshHDBrowser onOpenFolder={handleOpenFolder} />;
@@ -82,12 +90,13 @@ const Index = () => {
         );
       }
       case "project-detail": {
-        let foundProject: ProjectItem | null = null;
-        for (const f of folders) {
-          const proj = f.items.find((p) => p.id === win.contentId);
-          if (proj) { foundProject = proj; break; }
-        }
-        return <ProjectDetail project={foundProject} />;
+        const foundProject = getProjectById(win.contentId) || null;
+        return (
+          <ProjectDetail
+            project={foundProject}
+            onViewFullProject={handleViewFullProject}
+          />
+        );
       }
       default:
         return null;
@@ -107,12 +116,9 @@ const Index = () => {
         }}
         onClick={handleDesktopClick}
       >
-        {/* Menu Bar */}
         <MenuBar />
 
-        {/* Desktop area */}
         <div className="absolute inset-0 pt-[25px] pb-[52px]">
-          {/* Macintosh HD Icon */}
           <DesktopIcon
             label="Macintosh HD"
             icon={macintoshHd}
@@ -120,7 +126,6 @@ const Index = () => {
             onDoubleClick={handleOpenMacintoshHD}
           />
 
-          {/* All windows */}
           {windows.map((win) => (
             <RetroWindow
               key={win.id}
@@ -143,9 +148,16 @@ const Index = () => {
           ))}
         </div>
 
-        {/* Dock */}
         <Dock onFinderClick={handleOpenMacintoshHD} />
       </div>
+
+      {/* Full-screen project view overlay */}
+      {fullViewProject && (
+        <FullProjectView
+          project={fullViewProject}
+          onClose={handleCloseFullView}
+        />
+      )}
     </>
   );
 };
