@@ -42,7 +42,11 @@ const ProjectDetail = ({ project }: ProjectDetailProps) => {
         <div className="grid grid-cols-2 gap-2 mb-4">
           {project.images!.map((img, i) => (
             <div key={i} className="retro-inset overflow-hidden">
-              <img src={img} alt="" className="w-full h-[100px] object-cover block" />
+              <img
+                src={img}
+                alt=""
+                className="w-full h-[120px] object-contain block"
+              />
             </div>
           ))}
         </div>
