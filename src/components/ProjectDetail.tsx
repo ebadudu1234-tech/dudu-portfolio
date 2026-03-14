@@ -28,24 +28,27 @@ const ProjectDetail = ({ project }: ProjectDetailProps) => {
     <div className="p-4 font-retro">
       {/* Thumbnail — only if exists */}
       {hasThumb && (
-        <div className="retro-inset mb-4 overflow-hidden">
+        <div className="retro-inset mb-4 overflow-hidden aspect-[4/3]">
           <img
             src={project.thumbnail}
             alt={project.title}
-            className="w-full h-[180px] object-cover block"
+            className="w-full h-full object-cover block"
           />
         </div>
       )}
 
       {/* Extra images — only if exist */}
       {hasImages && (
-        <div className="grid grid-cols-2 gap-2 mb-4">
+        <div className="flex flex-col gap-3 mb-4">
           {project.images!.map((img, i) => (
-            <div key={i} className="retro-inset overflow-hidden">
+            <div
+              key={i}
+              className="retro-inset overflow-hidden aspect-[4/3]"
+            >
               <img
                 src={img}
                 alt=""
-                className="w-full h-[120px] object-contain block"
+                className="w-full h-full object-cover block"
               />
             </div>
           ))}
