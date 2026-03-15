@@ -47,12 +47,16 @@ const aboutMeContent: ProjectItem[] = [
       "/images/about/gallery-2.jpg",
       "/images/about/gallery-3.jpg",
       "/images/about/gallery-4.jpg",
+      "/images/about/gallery-5.jpg",
+      "/images/about/gallery-6.jpg",
     ],
     images: [
       "/images/about/gallery-1.jpg",
       "/images/about/gallery-2.jpg",
       "/images/about/gallery-3.jpg",
       "/images/about/gallery-4.jpg",
+      "/images/about/gallery-5.jpg",
+      "/images/about/gallery-6.jpg",
     ],
   },
 ];
