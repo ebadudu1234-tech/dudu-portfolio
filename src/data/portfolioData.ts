@@ -109,7 +109,7 @@ const printDesignProjects: ProjectItem[] = [
     thumbnail: "/images/print/dada/dada-v5_heropage.jpg",
     shortDescription:
       "A print editorial project presented as a sequence of newspaper spreads, exploring pacing, layout, and typographic rhythm.",
-    heroImage: "/images/print/dada/dada-v5_Page_01.jpg",
+    heroImage: "/images/print/dada/dada-v5_heropage.jpg",
     fullDescription:
       "DADA Newspaper Vol. 2 is a print design project exploring editorial pacing, visual sequencing, and spread-based storytelling.\n\nThe project is structured as a sequence of newspaper spreads, where typography, image placement, and composition work together to build rhythm across the publication.\n\nThis work focuses on how printed matter can guide attention, create pauses, and shape narrative flow through layout decisions.",
     detailImages: [
