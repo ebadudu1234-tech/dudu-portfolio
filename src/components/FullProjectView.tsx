@@ -32,11 +32,11 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
         <div className="max-w-[1000px] mx-auto p-6 font-retro">
           {/* Hero image */}
           {heroImage && (
-            <div className="retro-inset mb-6 overflow-hidden">
+            <div className="retro-inset mb-6 overflow-hidden aspect-[4/3]">
               <img
                 src={heroImage}
                 alt={project.title}
-                className="w-full h-auto block"
+                className="w-full h-full object-cover block"
               />
             </div>
           )}
