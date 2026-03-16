@@ -20,28 +20,20 @@ const MenuBar = () => {
   }, []);
 
   const formatTime = (date: Date) =>
-    date.toLocaleTimeString("en-US", {
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: true,
-    });
+    date.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", hour12: true });
 
   const formatDate = (date: Date) =>
-    date.toLocaleDateString("en-US", {
-      weekday: "short",
-      month: "short",
-      day: "numeric",
-    });
+    date.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
 
   return (
-    <div className="retro-menubar fixed top-0 left-0 right-0 z-[60] flex h-[25px] items-center justify-between px-1 select-none">
+    <div className="retro-menubar fixed top-0 left-0 right-0 z-[60] flex h-[30px] md:h-[28px] items-center justify-between px-1 select-none">
       <div className="flex items-center">
         {menuItems.map((item) => (
           <button
             key={item.label}
-            className={`px-3 py-0 text-[13px] leading-[25px] font-retro transition-colors ${
+            className={`px-3 py-0 text-[15px] md:text-[14px] leading-[30px] md:leading-[28px] font-retro transition-colors ${
               activeMenu === item.label ? "retro-selected" : ""
-            } ${item.isBold ? "text-[15px]" : ""}`}
+            } ${item.isBold ? "text-[17px] md:text-[16px]" : ""}`}
             onMouseDown={() => setActiveMenu(item.label)}
             onMouseUp={() => setActiveMenu(null)}
             onMouseLeave={() => setActiveMenu(null)}
@@ -50,7 +42,7 @@ const MenuBar = () => {
           </button>
         ))}
       </div>
-      <div className="flex items-center gap-4 text-[11px] font-retro text-foreground pr-2">
+      <div className="flex items-center gap-4 text-[13px] md:text-[12px] font-retro text-foreground pr-2">
         <span className="hidden sm:inline">{formatDate(currentTime)}</span>
         <span>{formatTime(currentTime)}</span>
       </div>

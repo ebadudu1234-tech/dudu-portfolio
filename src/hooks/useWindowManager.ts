@@ -4,7 +4,7 @@ export interface WindowState {
   id: string;
   title: string;
   contentType: "folder-browser" | "project-detail" | "macintosh-hd";
-  contentId: string; // folder id or project id
+  contentId: string;
   x: number;
   y: number;
   width: number;
@@ -34,15 +34,12 @@ export const useWindowManager = () => {
       height?: number;
     }) => {
       setWindows((prev) => {
-        // If already open, just bring to front
         const existing = prev.find((w) => w.id === params.id);
         if (existing) {
           nextZIndex++;
           setActiveWindowId(params.id);
           return prev.map((w) =>
-            w.id === params.id
-              ? { ...w, zIndex: nextZIndex, isMinimized: false }
-              : w
+            w.id === params.id ? { ...w, zIndex: nextZIndex, isMinimized: false } : w
           );
         }
 
@@ -76,21 +73,19 @@ export const useWindowManager = () => {
   const bringToFront = useCallback((id: string) => {
     nextZIndex++;
     setActiveWindowId(id);
-    setWindows((prev) =>
-      prev.map((w) => (w.id === id ? { ...w, zIndex: nextZIndex } : w))
-    );
+    setWindows((prev) => prev.map((w) => (w.id === id ? { ...w, zIndex: nextZIndex } : w)));
   }, []);
 
   const updatePosition = useCallback((id: string, x: number, y: number) => {
-    setWindows((prev) =>
-      prev.map((w) => (w.id === id ? { ...w, x, y } : w))
-    );
+    setWindows((prev) => prev.map((w) => (w.id === id ? { ...w, x, y } : w)));
   }, []);
 
   const minimizeWindow = useCallback((id: string) => {
-    setWindows((prev) =>
-      prev.map((w) => (w.id === id ? { ...w, isMinimized: true } : w))
-    );
+    setWindows((prev) => prev.map((w) => (w.id === id ? { ...w, isMinimized: true } : w)));
+  }, []);
+
+  const resizeWindow = useCallback((id: string, width: number, height: number) => {
+    setWindows((prev) => prev.map((w) => (w.id === id ? { ...w, width, height } : w)));
   }, []);
 
   return {
@@ -101,5 +96,6 @@ export const useWindowManager = () => {
     bringToFront,
     updatePosition,
     minimizeWindow,
+    resizeWindow,
   };
 };

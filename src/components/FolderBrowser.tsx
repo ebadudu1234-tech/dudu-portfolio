@@ -12,34 +12,25 @@ interface FolderBrowserProps {
 const FolderBrowser = ({ items, onOpenProject }: FolderBrowserProps) => {
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
-  const handleClick = (id: string) => {
-    setSelectedId(id);
-  };
-
-  const handleDoubleClick = (item: ProjectItem) => {
-    onOpenProject(item);
-  };
-
   if (items.length === 0) {
     return (
-      <div className="flex items-center justify-center h-full text-[12px] font-retro text-muted-foreground">
+      <div className="flex items-center justify-center h-full text-[14px] md:text-[13px] font-retro text-muted-foreground">
         This folder is empty.
       </div>
     );
   }
 
-  // For About Me and Contact, show text content directly
   if (
     items.length === 1 &&
     (items[0].category === "About" || items[0].category === "Contact")
   ) {
     const item = items[0];
     return (
-      <div className="p-4">
-        <h2 className="text-[14px] font-retro font-bold text-foreground mb-3">
+      <div className="p-5">
+        <h2 className="text-[16px] md:text-[15px] font-retro font-bold text-foreground mb-3">
           {item.title}
         </h2>
-        <div className="text-[12px] font-retro text-foreground leading-relaxed whitespace-pre-line">
+        <div className="text-[14px] md:text-[13px] font-retro text-foreground leading-relaxed whitespace-pre-line">
           {item.description}
         </div>
       </div>
@@ -47,7 +38,7 @@ const FolderBrowser = ({ items, onOpenProject }: FolderBrowserProps) => {
   }
 
   return (
-    <div className="p-3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-1">
+    <div className="p-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-1">
       {items.map((item, i) => {
         const isSelected = selectedId === item.id;
         const icon = item.thumbnail || (item.category === "Visual Design" ? imageFileIcon : fileIcon);
@@ -55,23 +46,23 @@ const FolderBrowser = ({ items, onOpenProject }: FolderBrowserProps) => {
         return (
           <motion.div
             key={item.id}
-            className={`flex flex-col items-center gap-1 p-2 cursor-pointer select-none rounded-sm ${
+            className={`flex flex-col items-center gap-1.5 p-3 cursor-pointer select-none rounded-sm ${
               isSelected ? "retro-selected" : "hover:bg-accent/50"
             }`}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.04, duration: 0.2 }}
-            onClick={() => handleClick(item.id)}
-            onDoubleClick={() => handleDoubleClick(item)}
+            onClick={() => setSelectedId(item.id)}
+            onDoubleClick={() => onOpenProject(item)}
           >
             <img
               src={icon}
               alt={item.title}
-              className="w-[40px] h-[40px] object-contain"
+              className="w-[52px] h-[52px] md:w-[48px] md:h-[48px] object-contain"
               draggable={false}
             />
             <span
-              className={`text-[10px] font-retro text-center leading-tight max-w-[80px] truncate ${
+              className={`text-[12px] md:text-[11px] font-retro text-center leading-tight max-w-[90px] truncate ${
                 isSelected ? "text-highlight-foreground" : "text-foreground"
               }`}
             >
