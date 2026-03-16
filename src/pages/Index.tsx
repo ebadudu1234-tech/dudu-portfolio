@@ -24,6 +24,7 @@ const Index = () => {
     bringToFront,
     updatePosition,
     minimizeWindow,
+    resizeWindow,
   } = useWindowManager();
 
   const handleOpenMacintoshHD = useCallback(() => {
@@ -32,8 +33,8 @@ const Index = () => {
       title: "Macintosh HD",
       contentType: "macintosh-hd",
       contentId: "macintosh-hd",
-      width: 480,
-      height: 380,
+      width: 520,
+      height: 420,
     });
   }, [openWindow]);
 
@@ -44,8 +45,8 @@ const Index = () => {
         title: folderLabel,
         contentType: "folder-browser",
         contentId: folderId,
-        width: 520,
-        height: 380,
+        width: 560,
+        height: 420,
       });
     },
     [openWindow]
@@ -58,8 +59,8 @@ const Index = () => {
         title: project.title,
         contentType: "project-detail",
         contentId: project.id,
-        width: 420,
-        height: 380,
+        width: 460,
+        height: 420,
       });
     },
     [openWindow]
@@ -81,22 +82,12 @@ const Index = () => {
         return <MacintoshHDBrowser onOpenFolder={handleOpenFolder} />;
       case "folder-browser": {
         const folder = getFolderById(win.contentId);
-        if (!folder) return <div className="p-3 text-[11px] font-retro">Folder not found.</div>;
-        return (
-          <FolderBrowser
-            items={folder.items}
-            onOpenProject={handleOpenProject}
-          />
-        );
+        if (!folder) return <div className="p-3 text-[13px] font-retro">Folder not found.</div>;
+        return <FolderBrowser items={folder.items} onOpenProject={handleOpenProject} />;
       }
       case "project-detail": {
         const foundProject = getProjectById(win.contentId) || null;
-        return (
-          <ProjectDetail
-            project={foundProject}
-            onViewFullProject={handleViewFullProject}
-          />
-        );
+        return <ProjectDetail project={foundProject} onViewFullProject={handleViewFullProject} />;
       }
       default:
         return null;
@@ -118,7 +109,7 @@ const Index = () => {
       >
         <MenuBar />
 
-        <div className="absolute inset-0 pt-[25px] pb-[52px]">
+        <div className="absolute inset-0 pt-[30px] md:pt-[28px] pb-[60px] md:pb-[56px]">
           <DesktopIcon
             label="Macintosh HD"
             icon={macintoshHd}
@@ -142,6 +133,7 @@ const Index = () => {
               onBringToFront={bringToFront}
               onUpdatePosition={updatePosition}
               onMinimize={minimizeWindow}
+              onResize={resizeWindow}
             >
               {renderWindowContent(win)}
             </RetroWindow>
@@ -151,12 +143,8 @@ const Index = () => {
         <Dock onFinderClick={handleOpenMacintoshHD} />
       </div>
 
-      {/* Full-screen project view overlay */}
       {fullViewProject && (
-        <FullProjectView
-          project={fullViewProject}
-          onClose={handleCloseFullView}
-        />
+        <FullProjectView project={fullViewProject} onClose={handleCloseFullView} />
       )}
     </>
   );

@@ -11,20 +11,18 @@ const MacintoshHDBrowser = ({ onOpenFolder }: MacintoshHDBrowserProps) => {
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
   return (
-    <div className="p-3">
-      {/* Info bar */}
-      <div className="mb-3 pb-2 border-b border-border text-[10px] font-retro text-muted-foreground">
+    <div className="p-4">
+      <div className="mb-3 pb-2 border-b border-border text-[12px] md:text-[11px] font-retro text-muted-foreground">
         {folders.length} items — Macintosh HD
       </div>
 
-      {/* Folder grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-1">
         {folders.map((folder, i) => {
           const isSelected = selectedId === folder.id;
           return (
             <motion.div
               key={folder.id}
-              className={`flex flex-col items-center gap-1 p-3 cursor-pointer select-none rounded-sm ${
+              className={`flex flex-col items-center gap-1.5 p-3 cursor-pointer select-none rounded-sm ${
                 isSelected ? "retro-selected" : "hover:bg-accent/50"
               }`}
               initial={{ opacity: 0, y: 10 }}
@@ -36,13 +34,11 @@ const MacintoshHDBrowser = ({ onOpenFolder }: MacintoshHDBrowserProps) => {
               <img
                 src={folderIcon}
                 alt={folder.label}
-                className={`w-[48px] h-[48px] object-contain ${
-                  isSelected ? "brightness-75" : ""
-                }`}
+                className={`w-[56px] h-[56px] md:w-[52px] md:h-[52px] object-contain ${isSelected ? "brightness-75" : ""}`}
                 draggable={false}
               />
               <span
-                className={`text-[11px] font-retro text-center leading-tight ${
+                className={`text-[13px] md:text-[12px] font-retro text-center leading-tight ${
                   isSelected ? "text-highlight-foreground" : "text-foreground"
                 }`}
               >
