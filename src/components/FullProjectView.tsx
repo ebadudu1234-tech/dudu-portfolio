@@ -71,16 +71,16 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
 
           {/* Gallery */}
           {gallery.length > 0 && (
-            <div className="flex flex-col gap-4 mb-6">
+            <div className="flex flex-col gap-6 mb-6">
               <h3 className="text-[13px] font-bold text-foreground border-b border-border pb-1">
                 Project Gallery
               </h3>
               {gallery.map((img, i) => (
-                <div key={i} className="retro-inset overflow-hidden aspect-[4/3]">
+                <div key={i} className="retro-inset overflow-hidden">
                   <img
                     src={img}
                     alt={`${project.title} detail ${i + 1}`}
-                    className="w-full h-full object-cover block"
+                    className="w-full h-auto block"
                   />
                 </div>
               ))}
