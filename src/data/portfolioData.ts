@@ -103,13 +103,57 @@ const brandDesignProjects: ProjectItem[] = [
 const printDesignProjects: ProjectItem[] = [
   {
     id: "pr-1",
-    title: "Editorial Booklet — Fragments",
-    year: "2024",
+    title: "DADA Newspaper Vol. 1",
+    year: "2025",
     category: "Print Design",
+    thumbnail: "/images/print/dada/dada-v5_heropage.jpg",
     shortDescription:
-      "A printed editorial booklet exploring memory and image sequencing through experimental layout.",
+      "A print editorial project presented as a sequence of newspaper spreads, exploring pacing, layout, and typographic rhythm.",
+    heroImage: "/images/print/dada/dada-v5_Page_01.jpg",
     fullDescription:
-      "A printed editorial booklet exploring memory and image sequencing through experimental layout, typography, and paper-based storytelling.\n\nThe booklet uses a non-linear narrative structure, with each spread functioning as both an independent piece and part of a larger visual essay. Typefaces were selected to create a dialogue between legibility and abstraction.\n\nPrinted on uncoated stock with spot varnish details to enhance the tactile reading experience.",
+      "DADA Newspaper Vol. 2 is a print design project exploring editorial pacing, visual sequencing, and spread-based storytelling.\n\nThe project is structured as a sequence of newspaper spreads, where typography, image placement, and composition work together to build rhythm across the publication.\n\nThis work focuses on how printed matter can guide attention, create pauses, and shape narrative flow through layout decisions.",
+    detailImages: [
+      "/images/print/dada/dada-v5_Page_01.jpg",
+      "/images/print/dada/dada-v5_Page_02.jpg",
+      "/images/print/dada/dada-v5_Page_03.jpg",
+      "/images/print/dada/dada-v5_Page_04.jpg",
+      "/images/print/dada/dada-v5_Page_05.jpg",
+      "/images/print/dada/dada-v5_Page_06.jpg",
+      "/images/print/dada/dada-v5_Page_07.jpg",
+      "/images/print/dada/dada-v5_Page_08.jpg",
+      "/images/print/dada/dada-v5_Page_09.jpg",
+      "/images/print/dada/dada-v5_Page_10.jpg",
+      "/images/print/dada/dada-v5_Page_11.jpg",
+      "/images/print/dada/dada-v5_Page_12.jpg",
+      "/images/print/dada/dada-v5_Page_13.jpg",
+      "/images/print/dada/dada-v5_Page_14.jpg",
+      "/images/print/dada/dada-v5_Page_15.jpg",
+      "/images/print/dada/dada-v5_Page_16.jpg",
+      "/images/print/dada/dada-v5_Page_17.jpg",
+      "/images/print/dada/dada-v5_Page_18.jpg",
+      "/images/print/dada/dada-v5_Page_19.jpg",
+    ],
+    images: [
+      "/images/print/dada/dada-v5_Page_01.jpg",
+      "/images/print/dada/dada-v5_Page_02.jpg",
+      "/images/print/dada/dada-v5_Page_03.jpg",
+      "/images/print/dada/dada-v5_Page_04.jpg",
+      "/images/print/dada/dada-v5_Page_05.jpg",
+      "/images/print/dada/dada-v5_Page_06.jpg",
+      "/images/print/dada/dada-v5_Page_07.jpg",
+      "/images/print/dada/dada-v5_Page_08.jpg",
+      "/images/print/dada/dada-v5_Page_09.jpg",
+      "/images/print/dada/dada-v5_Page_10.jpg",
+      "/images/print/dada/dada-v5_Page_11.jpg",
+      "/images/print/dada/dada-v5_Page_12.jpg",
+      "/images/print/dada/dada-v5_Page_13.jpg",
+      "/images/print/dada/dada-v5_Page_14.jpg",
+      "/images/print/dada/dada-v5_Page_15.jpg",
+      "/images/print/dada/dada-v5_Page_16.jpg",
+      "/images/print/dada/dada-v5_Page_17.jpg",
+      "/images/print/dada/dada-v5_Page_18.jpg",
+      "/images/print/dada/dada-v5_Page_19.jpg",
+    ],
   },
   {
     id: "pr-2",
@@ -132,7 +176,6 @@ const printDesignProjects: ProjectItem[] = [
       "Designed a foldout exhibition brochure featuring curatorial text, image layouts, and an elegant print hierarchy for a contemporary art show.\n\nThe brochure unfolds into a large-format poster on one side, while the other side contains structured curatorial information, artist bios, and a floor plan.\n\nThe design balances informational clarity with the visual identity of the exhibition.",
   },
 ];
-
 // --------------- GAME DESIGN ---------------
 
 const gameDesignProjects: ProjectItem[] = [
