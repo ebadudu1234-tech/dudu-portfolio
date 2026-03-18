@@ -160,10 +160,10 @@ const printDesignProjects: ProjectItem[] = [
     title: "The Eye That Dreams",
     year: "2025",
     category: "Print Design",
-    thumbnail: "/images/print/the-eye-that-dreams/After Dadda_Page_01.jpg",
+    thumbnail: "/images/print/the-eye-that-dreams/After_Dadda_Page_HERO.jpg",
     shortDescription:
       "A print design project exploring sequencing, visual rhythm, and dreamlike editorial composition.",
-    heroImage: "/images/print/the-eye-that-dreams/After Dadda_Page_01.jpg",
+    heroImage: "/images/print/the-eye-that-dreams/After_Dadda_Page_HERO.jpg",
     fullDescription:
       "The Eye That Dreams is a print design project developed through a sequence of editorial pages and spreads.\n\nThe project explores visual rhythm, narrative pacing, and the relationship between image, typography, and layout. Each page contributes to a dreamlike reading experience, where composition and sequencing shape the emotional flow of the publication.\n\nThis work focuses on how print can create atmosphere through structure, repetition, contrast, and page-to-page transitions.",
     detailImages: [
