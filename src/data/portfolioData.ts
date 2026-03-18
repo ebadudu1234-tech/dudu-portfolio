@@ -207,7 +207,7 @@ const printDesignProjects: ProjectItem[] = [
   },
   {
     id: "pr-3",
-    title: "low Battery No Childhood",
+    title: "Siminar 4",
     year: "2025",
     category: "Print Design",
     thumbnail: "/images/print/siminar-4/Siminar_4_W4_Page_HERO.jpg",
