@@ -207,13 +207,37 @@ const printDesignProjects: ProjectItem[] = [
   },
   {
     id: "pr-3",
-    title: "Exhibition Brochure Design",
-    year: "2023",
+    title: "low Battery No Childhood",
+    year: "2025",
     category: "Print Design",
+    thumbnail: "/images/print/siminar-4/Siminar_4_W4_Page_HERO.jpg",
     shortDescription:
-      "Designed a foldout exhibition brochure featuring curatorial text and elegant print hierarchy.",
+      "A print design project exploring editorial sequencing, graphic rhythm, and page-based visual storytelling.",
+    heroImage: "/images/print/siminar-4/Siminar_4_W4_Page_HERO.jpg",
     fullDescription:
-      "Designed a foldout exhibition brochure featuring curatorial text, image layouts, and an elegant print hierarchy for a contemporary art show.\n\nThe brochure unfolds into a large-format poster on one side, while the other side contains structured curatorial information, artist bios, and a floor plan.\n\nThe design balances informational clarity with the visual identity of the exhibition.",
+      "Siminar 4 is a print design project developed as a sequence of editorial pages and spreads.\n\nThe project explores pacing, visual hierarchy, and the relationship between image, typography, and layout across multiple pages.\n\nThis work focuses on how print can communicate atmosphere and narrative through structured composition, repetition, and variation from page to page.",
+    detailImages: [
+      "/images/print/siminar-4/Siminar_4_W4_Page_1.jpg",
+      "/images/print/siminar-4/Siminar_4_W4_Page_2.jpg",
+      "/images/print/siminar-4/Siminar_4_W4_Page_3.jpg",
+      "/images/print/siminar-4/Siminar_4_W4_Page_4.jpg",
+      "/images/print/siminar-4/Siminar_4_W4_Page_5.jpg",
+      "/images/print/siminar-4/Siminar_4_W4_Page_6.jpg",
+      "/images/print/siminar-4/Siminar_4_W4_Page_7.jpg",
+      "/images/print/siminar-4/Siminar_4_W4_Page_8.jpg",
+      "/images/print/siminar-4/Siminar_4_W4_Page_9.jpg",
+    ],
+    images: [
+      "/images/print/siminar-4/Siminar_4_W4_Page_1.jpg",
+      "/images/print/siminar-4/Siminar_4_W4_Page_2.jpg",
+      "/images/print/siminar-4/Siminar_4_W4_Page_3.jpg",
+      "/images/print/siminar-4/Siminar_4_W4_Page_4.jpg",
+      "/images/print/siminar-4/Siminar_4_W4_Page_5.jpg",
+      "/images/print/siminar-4/Siminar_4_W4_Page_6.jpg",
+      "/images/print/siminar-4/Siminar_4_W4_Page_7.jpg",
+      "/images/print/siminar-4/Siminar_4_W4_Page_8.jpg",
+      "/images/print/siminar-4/Siminar_4_W4_Page_9.jpg",
+    ],
   },
 ];
 // --------------- GAME DESIGN ---------------
