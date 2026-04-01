@@ -66,14 +66,31 @@ const aboutMeContent: ProjectItem[] = [
 const brandDesignProjects: ProjectItem[] = [
   {
     id: "bd-1",
-    title: "Aurora Skincare Identity",
-    year: "2024",
+    title: "YIWUGO — Brand Identity System",
+    year: "2025",
     category: "Brand Design",
+    thumbnail: "/images/brand/yiwugo/YIWUGO-3_Page_02.jpg",
     shortDescription:
-      "A complete visual identity system for a skincare brand, including logo design, typography, and brand color strategy.",
+      "A branding project for Yiwu Small Commodity Market, including visual identity, wayfinding system, editorial applications, posters, UI concepts, and final branded outcomes.",
+    heroImage: "/images/brand/yiwugo/YIWUGO-3_Page_02.jpg",
     fullDescription:
-      "A complete visual identity system for a skincare brand, including logo design, typography, packaging direction, and brand color strategy.\n\nThe project started with deep research into the skincare market, competitive landscape, and target audience. From there, I developed a brand strategy rooted in simplicity, natural beauty, and trust.\n\nThe visual system includes a custom wordmark, secondary logo lockups, a curated color palette inspired by natural minerals, and a comprehensive typography system. Packaging concepts were designed to feel premium yet approachable.",
-    link: "#",
+      "YIWUGO is a brand identity project developed for Yiwu Small Commodity Market. The project rethinks the market through a more playful, accessible, and system-driven visual language.\n\nThe design process includes historical research, user analysis, brand strategy, mascot and icon development, UI concepts, editorial design, posters, maps, and environmental applications. The goal was to create a unified identity system that could connect navigation, communication, merchandise, and public-facing experiences.\n\nThis project explores how branding can turn a large and complex commercial environment into a clearer, friendlier, and more memorable system.",
+    detailImages: [
+      "/images/brand/yiwugo/YIWUGO-3_Page_02.jpg",
+      "/images/brand/yiwugo/YIWUGO-3_Page_03.jpg",
+      "/images/brand/yiwugo/YIWUGO-3_Page_04.jpg",
+      "/images/brand/yiwugo/YIWUGO-3_Page_05.jpg",
+      "/images/brand/yiwugo/YIWUGO-3_Page_06.jpg",
+      "/images/brand/yiwugo/YIWUGO-3_Page_07.jpg",
+    ],
+    images: [
+      "/images/brand/yiwugo/YIWUGO-3_Page_02.jpg",
+      "/images/brand/yiwugo/YIWUGO-3_Page_03.jpg",
+      "/images/brand/yiwugo/YIWUGO-3_Page_04.jpg",
+      "/images/brand/yiwugo/YIWUGO-3_Page_05.jpg",
+      "/images/brand/yiwugo/YIWUGO-3_Page_06.jpg",
+      "/images/brand/yiwugo/YIWUGO-3_Page_07.jpg",
+    ],
   },
   {
     id: "bd-2",
