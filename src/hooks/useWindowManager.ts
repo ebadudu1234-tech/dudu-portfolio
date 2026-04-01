@@ -3,7 +3,7 @@ import { useState, useCallback } from "react";
 export interface WindowState {
   id: string;
   title: string;
-  contentType: "folder-browser" | "project-detail" | "macintosh-hd";
+  contentType: "folder-browser" | "project-detail" | "macintosh-hd" | "video-player";
   contentId: string;
   x: number;
   y: number;

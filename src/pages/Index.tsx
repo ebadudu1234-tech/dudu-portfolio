@@ -10,7 +10,9 @@ import FullProjectView from "@/components/FullProjectView";
 import BootScreen from "@/components/BootScreen";
 import { useWindowManager } from "@/hooks/useWindowManager";
 import { getFolderById, getProjectById, type ProjectItem } from "@/data/portfolioData";
+import VideoPlayer from "@/components/VideoPlayer";
 import macintoshHd from "@/assets/macintosh-hd.png";
+import videoPlayerIcon from "@/assets/video-player-icon.png";
 import desktopWallpaper from "@/assets/desktop-wallpaper.jpg";
 
 const Index = () => {
