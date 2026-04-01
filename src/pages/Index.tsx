@@ -102,6 +102,8 @@ const Index = () => {
         const foundProject = getProjectById(win.contentId) || null;
         return <ProjectDetail project={foundProject} onViewFullProject={handleViewFullProject} />;
       }
+      case "video-player":
+        return <VideoPlayer />;
       default:
         return null;
     }
