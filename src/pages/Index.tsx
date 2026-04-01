@@ -40,6 +40,17 @@ const Index = () => {
     });
   }, [openWindow]);
 
+  const handleOpenVideoPlayer = useCallback(() => {
+    openWindow({
+      id: "video-player",
+      title: "Video Player",
+      contentType: "video-player",
+      contentId: "video-player",
+      width: 640,
+      height: 480,
+    });
+  }, [openWindow]);
+
   const handleOpenFolder = useCallback(
     (folderId: string, folderLabel: string) => {
       openWindow({
