@@ -10,7 +10,9 @@ import FullProjectView from "@/components/FullProjectView";
 import BootScreen from "@/components/BootScreen";
 import { useWindowManager } from "@/hooks/useWindowManager";
 import { getFolderById, getProjectById, type ProjectItem } from "@/data/portfolioData";
+import VideoPlayer from "@/components/VideoPlayer";
 import macintoshHd from "@/assets/macintosh-hd.png";
+import videoPlayerIcon from "@/assets/video-player-icon.png";
 import desktopWallpaper from "@/assets/desktop-wallpaper.jpg";
 
 const Index = () => {
@@ -35,6 +37,17 @@ const Index = () => {
       contentId: "macintosh-hd",
       width: 520,
       height: 420,
+    });
+  }, [openWindow]);
+
+  const handleOpenVideoPlayer = useCallback(() => {
+    openWindow({
+      id: "video-player",
+      title: "Video Player",
+      contentType: "video-player",
+      contentId: "video-player",
+      width: 640,
+      height: 480,
     });
   }, [openWindow]);
 
@@ -89,6 +102,8 @@ const Index = () => {
         const foundProject = getProjectById(win.contentId) || null;
         return <ProjectDetail project={foundProject} onViewFullProject={handleViewFullProject} />;
       }
+      case "video-player":
+        return <VideoPlayer />;
       default:
         return null;
     }
@@ -115,6 +130,12 @@ const Index = () => {
             icon={macintoshHd}
             position={{ top: "16px", right: "24px" }}
             onDoubleClick={handleOpenMacintoshHD}
+          />
+          <DesktopIcon
+            label="Video Player"
+            icon={videoPlayerIcon}
+            position={{ top: "120px", right: "24px" }}
+            onDoubleClick={handleOpenVideoPlayer}
           />
 
           {windows.map((win) => (
