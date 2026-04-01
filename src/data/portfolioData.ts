@@ -262,14 +262,31 @@ const printDesignProjects: ProjectItem[] = [
 const gameDesignProjects: ProjectItem[] = [
   {
     id: "gd-1",
-    title: "Dream Archive",
-    year: "2024",
+    title: "ALLODOX — Interactive Game Design",
+    year: "2025",
     category: "Game Design",
+    thumbnail: "/images/game/allodox/ALLODOX-3_Page_20.jpg",
     shortDescription:
-      "A narrative game concept focused on memory, exploration, and environmental storytelling.",
+      "An interactive game design project exploring decision-making difficulty through worldbuilding, character design, UI systems, scene design, and editorial presentation.",
+    heroImage: "/images/game/allodox/ALLODOX-3_Page_20.jpg",
     fullDescription:
-      "A narrative game concept focused on memory, exploration, and environmental storytelling. Developed the world-building, interaction flow, and visual direction.\n\nThe game places the player in a surreal archive of dream fragments, where each room represents a different memory. Interaction is slow and contemplative, emphasizing discovery over challenge.\n\nI designed the spatial logic, narrative structure, visual mood boards, and key interaction moments.",
-    link: "#",
+      "ALLODOX is an interactive game design project centered on the psychology of decision-making difficulty. The project combines narrative worldbuilding, character development, interface design, scene construction, and visual identity into a coherent game system.\n\nThe design process includes background research, concept framing, environment design, character and logo development, UI exploration, gameplay flow, and supporting editorial materials. Through pixel-inspired visual language and atmospheric scenes, the project creates an immersive game world that reflects the emotional tension of choice and uncertainty.\n\nThis work explores how game design can communicate psychological states through mechanics, environments, graphic systems, and storytelling structure.",
+    detailImages: [
+      "/images/game/allodox/ALLODOX-3_Page_20.jpg",
+      "/images/game/allodox/ALLODOX-3_Page_21.jpg",
+      "/images/game/allodox/ALLODOX-3_Page_22.jpg",
+      "/images/game/allodox/ALLODOX-3_Page_23.jpg",
+      "/images/game/allodox/ALLODOX-3_Page_24.jpg",
+      "/images/game/allodox/ALLODOX-3_Page_25.jpg",
+    ],
+    images: [
+      "/images/game/allodox/ALLODOX-3_Page_20.jpg",
+      "/images/game/allodox/ALLODOX-3_Page_21.jpg",
+      "/images/game/allodox/ALLODOX-3_Page_22.jpg",
+      "/images/game/allodox/ALLODOX-3_Page_23.jpg",
+      "/images/game/allodox/ALLODOX-3_Page_24.jpg",
+      "/images/game/allodox/ALLODOX-3_Page_25.jpg",
+    ],
   },
   {
     id: "gd-2",
