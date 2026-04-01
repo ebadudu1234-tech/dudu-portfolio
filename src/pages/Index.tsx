@@ -131,6 +131,12 @@ const Index = () => {
             position={{ top: "16px", right: "24px" }}
             onDoubleClick={handleOpenMacintoshHD}
           />
+          <DesktopIcon
+            label="Video Player"
+            icon={videoPlayerIcon}
+            position={{ top: "120px", right: "24px" }}
+            onDoubleClick={handleOpenVideoPlayer}
+          />
 
           {windows.map((win) => (
             <RetroWindow
