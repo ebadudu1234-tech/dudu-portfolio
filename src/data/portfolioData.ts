@@ -92,17 +92,36 @@ const brandDesignProjects: ProjectItem[] = [
       "/images/brand/yiwugo/YIWUGO-3_Page_07.jpg",
     ],
   },
-  {
-    id: "bd-2",
-    title: "Mori Café Branding",
-    year: "2023",
-    category: "Brand Design",
-    shortDescription:
-      "Brand identity for a contemporary café inspired by quiet rituals and natural materials.",
-    fullDescription:
-      "Brand identity for a contemporary café inspired by quiet rituals and natural materials. Includes logo, menu layout, signage, and takeaway packaging.\n\nThe concept centers around the Japanese idea of 'mori' (forest), bringing the calm of nature into an urban café setting. Every touchpoint was designed to evoke warmth and tranquility.\n\nDeliverables include a hand-drawn logo, menu system, environmental signage, custom packaging, and a social media template kit.",
-    link: "#",
-  },
+{
+  id: "bd-2",
+  title: "UNGREEN SHOP — Branding & Packaging System",
+  year: "2024",
+  category: "Brand Design",
+  thumbnail: "/images/brand/ungreen-shop/ungreen-3_Page_08.jpg",
+  shortDescription:
+    "A branding project for UNGREEN SHOP, combining visual identity, packaging design, poster design, motion graphics, and final product applications around the theme of food additives.",
+  heroImage: "/images/brand/ungreen-shop/ungreen-3_Page_08.jpg",
+  fullDescription:
+    "UNGREEN SHOP is a branding and packaging design project developed around the topic of food additives and public perception of food safety. Instead of simply rejecting additives, the project rethinks how branding can communicate a more nuanced and critical understanding of what additives mean in contemporary consumption.\n\nThe project includes background research, questionnaire analysis, concept development, visual experiments, type design, logo design, poster design, packaging systems, motion graphics, and final product applications. Through bright synthetic colors, inflated letterforms, and a deliberately exaggerated visual language, the brand turns anxiety around additives into an eye-catching and discussable consumer experience.\n\nThis project explores how contemporary brand design can combine research, cultural commentary, and commercial aesthetics to create a system that is playful, provocative, and visually memorable.",
+  detailImages: [
+    "/images/brand/ungreen-shop/ungreen-3_Page_08.jpg",
+    "/images/brand/ungreen-shop/ungreen-3_Page_09.jpg",
+    "/images/brand/ungreen-shop/ungreen-3_Page_10.jpg",
+    "/images/brand/ungreen-shop/ungreen-3_Page_11.jpg",
+    "/images/brand/ungreen-shop/ungreen-3_Page_12.jpg",
+    "/images/brand/ungreen-shop/ungreen-3_Page_13.jpg",
+    "/images/brand/ungreen-shop/ungreen-3_Page_14.jpg",
+  ],
+  images: [
+    "/images/brand/ungreen-shop/ungreen-3_Page_08.jpg",
+    "/images/brand/ungreen-shop/ungreen-3_Page_09.jpg",
+    "/images/brand/ungreen-shop/ungreen-3_Page_10.jpg",
+    "/images/brand/ungreen-shop/ungreen-3_Page_11.jpg",
+    "/images/brand/ungreen-shop/ungreen-3_Page_12.jpg",
+    "/images/brand/ungreen-shop/ungreen-3_Page_13.jpg",
+    "/images/brand/ungreen-shop/ungreen-3_Page_14.jpg",
+  ],
+},
   {
     id: "bd-3",
     title: "Studio Flux Rebrand",
