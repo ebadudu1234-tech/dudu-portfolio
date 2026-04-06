@@ -38,9 +38,9 @@ const aboutMeContent: ProjectItem[] = [
     year: "",
     category: "About Me",
     shortDescription:
-      "Hello! I'm a designer passionate about creating thoughtful experiences across brand, interface, print, game, and interactive installation projects.",
+      "Hello! My name is Zihe Wang, and I am a designer from Yiwu, China, passionate about branding, print, UI, game, and interactive design.",
     fullDescription:
-      "Hello! I'm a designer passionate about creating thoughtful experiences across brand, interface, print, game, and interactive installation projects. I enjoy blending concept, storytelling, and visual systems into work that feels both expressive and meaningful.\n\nMy practice explores how people connect with images, objects, spaces, and digital systems. I care deeply about atmosphere, interaction, and emotional resonance.\n\nFeel free to explore the folders on this desktop to view different parts of my portfolio.",
+      "Hello! My name is Zihe Wang, and I am a designer from Yiwu, China. I am passionate about creating thoughtful visual experiences across branding, print, UI, game, and interactive design. I enjoy combining storytelling, visual systems, and user experience to create work that feels both expressive and meaningful. For me, design is not only about aesthetics, but also about communication, emotion, and connection.\n\nI have completed two internship experiences that helped shape my design practice. From December 2022 to June 2023, I interned at Yitan in Shanghai. From June 2023 to September 2023, I interned at Shenzhen Chuangmeng Co., Ltd., where I was responsible for localization design for the domestic version of Subway Surfers.\n\nI am an outgoing and open-minded person who enjoys communicating with others and working collaboratively. I adapt quickly to new environments, value teamwork, and believe that strong communication is an important part of the design process. I hope to continue developing work that connects people, ideas, and experiences in a clear and memorable way.",
     heroImage: "/images/about/profile-cover.jpg",
     detailImages: [
       "/images/about/gallery-1.jpg",
