@@ -375,34 +375,29 @@ const uiDesignProjects: ProjectItem[] = [
 const interactiveInstallationsProjects: ProjectItem[] = [
   {
     id: "ii-1",
-    title: "Echo Chamber",
+    title: "Nuclear Tide Evolutionaries",
     year: "2024",
     category: "Interactive Installations",
+    thumbnail: "/images/interactive/nuclear-tide-evolutionaries/zhangyu-3_Page_15.jpg",
     shortDescription:
-      "An interactive spatial installation responding to movement and sound.",
+      "An interactive device installation imagining evolutionary transformations of marine life under the long-term effects of nuclear-contaminated water.",
+    heroImage: "/images/interactive/nuclear-tide-evolutionaries/zhangyu-3_Page_15.jpg",
     fullDescription:
-      "An interactive spatial installation responding to movement and sound. Designed the audience journey, interaction concept, and visual atmosphere.\n\nEcho Chamber uses depth sensors and microphones to create a responsive environment where visitors' movements and voices generate visual and auditory feedback. The space evolves over time, creating a collective audiovisual memory.\n\nI led the interaction design, spatial planning, and visual direction.",
-    link: "#",
-  },
-  {
-    id: "ii-2",
-    title: "Touch / Trace",
-    year: "2023",
-    category: "Interactive Installations",
-    shortDescription:
-      "A multisensory installation exploring touch, projection, and responsive light.",
-    fullDescription:
-      "A multisensory installation exploring touch, projection, and responsive light behavior. Focused on physical interaction design and emotional engagement.\n\nVisitors interact with a tactile surface that responds to pressure and gesture. Projections shift and morph based on touch patterns, creating unique visual traces that fade over time.\n\nThe installation explores themes of impermanence, presence, and the relationship between body and light.",
-  },
-  {
-    id: "ii-3",
-    title: "Signal Garden",
-    year: "2023",
-    category: "Interactive Installations",
-    shortDescription:
-      "An installation combining sensor input, real-time visuals, and spatial composition.",
-    fullDescription:
-      "An installation concept combining sensor input, real-time visuals, and spatial composition to create a participatory public experience.\n\nSignal Garden transforms a public space into a reactive garden where visitors' proximity and movement trigger generative visuals and ambient sound. Each 'plant' in the garden is a sensor node that responds to nearby presence.\n\nI designed the interaction framework, visual language, and spatial layout.",
+      "Nuclear Tide Evolutionaries is an interactive installation project developed in response to the long-term environmental impact of nuclear-contaminated water discharge. The work speculates on how marine organisms might gradually mutate, adapt, and evolve under extreme ecological pressure.\n\nCombining research, speculative design, material experimentation, rendering, and physical fabrication, the project transforms a medical-like device into a fictional future apparatus for visualizing evolutionary change. The installation uses an unsettling visual language to create a sense of warning rather than normalization, encouraging viewers to reflect on pollution, mutation, and the fragile relationship between technology, ecology, and survival.\n\nThrough this project, I explore how interactive installation can communicate environmental anxiety and future consequences through form, atmosphere, and narrative visualization.",
+    detailImages: [
+      "/images/interactive/nuclear-tide-evolutionaries/zhangyu-3_Page_15.jpg",
+      "/images/interactive/nuclear-tide-evolutionaries/zhangyu-3_Page_16.jpg",
+      "/images/interactive/nuclear-tide-evolutionaries/zhangyu-3_Page_17.jpg",
+      "/images/interactive/nuclear-tide-evolutionaries/zhangyu-3_Page_18.jpg",
+      "/images/interactive/nuclear-tide-evolutionaries/zhangyu-3_Page_19.jpg",
+    ],
+    images: [
+      "/images/interactive/nuclear-tide-evolutionaries/zhangyu-3_Page_15.jpg",
+      "/images/interactive/nuclear-tide-evolutionaries/zhangyu-3_Page_16.jpg",
+      "/images/interactive/nuclear-tide-evolutionaries/zhangyu-3_Page_17.jpg",
+      "/images/interactive/nuclear-tide-evolutionaries/zhangyu-3_Page_18.jpg",
+      "/images/interactive/nuclear-tide-evolutionaries/zhangyu-3_Page_19.jpg",
+    ],
   },
 ];
 
