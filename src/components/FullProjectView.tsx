@@ -14,22 +14,6 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
   const gallery = project.detailImages || project.images || [];
   const isBook = BOOK_CATEGORIES.includes(project.category) && gallery.length > 0;
 
-  // If each uploaded image is already a full 2-page spread, show them 1:1.
-  // Otherwise build spreads: cover (blank + page[0]) + pairs + tail blank.
-  const imagesAreSpreads = project.imagesAreSpreads === true;
-  const spreads: Array<[string | null, string | null]> = [];
-  if (gallery.length > 0) {
-    if (imagesAreSpreads) {
-      for (const img of gallery) spreads.push([img, null]);
-    } else {
-      spreads.push([null, gallery[0]]);
-      for (let i = 1; i < gallery.length; i += 2) {
-        spreads.push([gallery[i], i + 1 < gallery.length ? gallery[i + 1] : null]);
-      }
-    }
-  }
-
-
   const [page, setPage] = useState(0);
   const [direction, setDirection] = useState(0);
 
@@ -40,8 +24,8 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
 
   const goNext = useCallback(() => {
     setDirection(1);
-    setPage((p) => Math.min(p + 1, spreads.length - 1));
-  }, [spreads.length]);
+    setPage((p) => Math.min(p + 1, gallery.length - 1));
+  }, [gallery.length]);
 
   const goPrev = useCallback(() => {
     setDirection(-1);
@@ -115,53 +99,30 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
               </h3>
 
               <div className="retro-inset bg-background p-4 md:p-6 flex flex-col items-center">
-                <div className="w-full flex justify-center mb-4 overflow-hidden">
+                <div className="w-full flex justify-center mb-4 min-h-[300px] overflow-hidden">
                   <AnimatePresence initial={false} custom={direction} mode="wait">
-                    <motion.div
-                      key={page}
+                    <motion.img
+                      key={gallery[page]}
+                      src={gallery[page]}
+                      alt={`${project.title} — page ${page + 1}`}
                       custom={direction}
                       variants={{
-                        enter: (dir: number) => ({ x: dir > 0 ? 80 : -80, opacity: 0 }),
+                        enter: (dir: number) => ({
+                          x: dir > 0 ? 80 : -80,
+                          opacity: 0,
+                        }),
                         center: { x: 0, opacity: 1 },
-                        exit: (dir: number) => ({ x: dir > 0 ? -80 : 80, opacity: 0 }),
+                        exit: (dir: number) => ({
+                          x: dir > 0 ? -80 : 80,
+                          opacity: 0,
+                        }),
                       }}
                       initial="enter"
                       animate="center"
                       exit="exit"
                       transition={{ duration: 0.25, ease: "easeInOut" }}
-                      className="w-full flex justify-center"
-                    >
-                      {imagesAreSpreads ? (
-                        <img
-                          src={spreads[page]?.[0] ?? ""}
-                          alt={`${project.title} — spread ${page + 1}`}
-                          className="max-w-full max-h-[75vh] w-auto h-auto object-contain block shadow-md bg-white"
-                        />
-                      ) : (
-                        <div
-                          className="grid grid-cols-2 gap-0 shadow-md bg-white"
-                          style={{ width: "min(100%, 1000px)", aspectRatio: "2 / 1.4" }}
-                        >
-                          {[0, 1].map((side) => {
-                            const src = spreads[page]?.[side] ?? null;
-                            return (
-                              <div
-                                key={side}
-                                className="w-full h-full bg-white flex items-center justify-center overflow-hidden border border-border/30"
-                              >
-                                {src ? (
-                                  <img
-                                    src={src}
-                                    alt={`${project.title} — spread ${page + 1} ${side === 0 ? "left" : "right"}`}
-                                    className="w-full h-full object-contain block"
-                                  />
-                                ) : null}
-                              </div>
-                            );
-                          })}
-                        </div>
-                      )}
-                    </motion.div>
+                      className="max-w-full max-h-[75vh] w-auto h-auto object-contain block shadow-md"
+                    />
                   </AnimatePresence>
                 </div>
 
@@ -175,23 +136,23 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
                   </button>
 
                   <div className="text-[13px] md:text-[12px] font-retro text-foreground tabular-nums">
-                    Spread {page + 1} / {spreads.length}
+                    Page {page + 1} / {gallery.length}
                   </div>
 
                   <button
                     onClick={goNext}
-                    disabled={page === spreads.length - 1}
+                    disabled={page === gallery.length - 1}
                     className="retro-outset bg-primary px-4 py-2 text-[13px] md:text-[12px] font-retro text-foreground hover:brightness-95 active:retro-inset disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     Next →
                   </button>
                 </div>
 
-                {spreads.length > 2 && (
+                {gallery.length > 2 && (
                   <input
                     type="range"
                     min={0}
-                    max={spreads.length - 1}
+                    max={gallery.length - 1}
                     value={page}
                     onChange={(e) => {
                       const next = Number(e.target.value);
@@ -199,7 +160,7 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
                       setPage(next);
                     }}
                     className="w-full mt-4 accent-foreground"
-                    aria-label="Jump to spread"
+                    aria-label="Jump to page"
                   />
                 )}
               </div>
@@ -229,7 +190,7 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
       </div>
 
       <div className="h-[24px] md:h-[22px] shrink-0 flex items-center px-3 text-[12px] md:text-[11px] font-retro text-muted-foreground border-t border-border" style={{ background: "hsl(var(--primary))" }}>
-        {project.title} — Full Project View{isBook ? ` — Spread ${page + 1} / ${spreads.length}` : ""}
+        {project.title} — Full Project View{isBook ? ` — Page ${page + 1} / ${gallery.length}` : ""}
       </div>
     </div>
   );
