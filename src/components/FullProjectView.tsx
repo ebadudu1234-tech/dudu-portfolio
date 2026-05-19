@@ -214,7 +214,7 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
       </div>
 
       <div className="h-[24px] md:h-[22px] shrink-0 flex items-center px-3 text-[12px] md:text-[11px] font-retro text-muted-foreground border-t border-border" style={{ background: "hsl(var(--primary))" }}>
-        {project.title} — Full Project View{isBook ? ` — Page ${page + 1} / ${gallery.length}` : ""}
+        {project.title} — Full Project View{isBook ? ` — Spread ${page + 1} / ${spreads.length}` : ""}
       </div>
     </div>
   );
