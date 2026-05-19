@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { type ProjectItem } from "@/data/portfolioData";
 
 interface FullProjectViewProps {
