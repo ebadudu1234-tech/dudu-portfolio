@@ -15,16 +15,28 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
   const isBook = BOOK_CATEGORIES.includes(project.category) && gallery.length > 0;
 
   const [page, setPage] = useState(0);
+  const [direction, setDirection] = useState(0);
 
   useEffect(() => {
     setPage(0);
+    setDirection(0);
   }, [project.id]);
+
+  const goNext = () => {
+    setDirection(1);
+    setPage((p) => Math.min(p + 1, gallery.length - 1));
+  };
+
+  const goPrev = () => {
+    setDirection(-1);
+    setPage((p) => Math.max(p - 1, 0));
+  };
 
   useEffect(() => {
     if (!isBook) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight") setPage((p) => Math.min(p + 1, gallery.length - 1));
-      if (e.key === "ArrowLeft") setPage((p) => Math.max(p - 1, 0));
+      if (e.key === "ArrowRight") goNext();
+      if (e.key === "ArrowLeft") goPrev();
       if (e.key === "Escape") onClose();
     };
     window.addEventListener("keydown", onKey);
