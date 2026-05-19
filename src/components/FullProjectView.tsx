@@ -22,15 +22,15 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
     setDirection(0);
   }, [project.id]);
 
-  const goNext = () => {
+  const goNext = useCallback(() => {
     setDirection(1);
     setPage((p) => Math.min(p + 1, gallery.length - 1));
-  };
+  }, [gallery.length]);
 
-  const goPrev = () => {
+  const goPrev = useCallback(() => {
     setDirection(-1);
     setPage((p) => Math.max(p - 1, 0));
-  };
+  }, []);
 
   useEffect(() => {
     if (!isBook) return;
@@ -41,7 +41,7 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [isBook, gallery.length, onClose]);
+  }, [isBook, onClose, goNext, goPrev]);
 
   return (
     <div className="fixed inset-0 z-[9999] flex flex-col" style={{ background: "hsl(var(--primary))" }}>
