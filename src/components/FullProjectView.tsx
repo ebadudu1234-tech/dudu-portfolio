@@ -131,28 +131,36 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
                       transition={{ duration: 0.25, ease: "easeInOut" }}
                       className="w-full flex justify-center"
                     >
-                      <div
-                        className="grid grid-cols-2 gap-0 shadow-md bg-white"
-                        style={{ width: "min(100%, 1000px)", aspectRatio: "2 / 1.4" }}
-                      >
-                        {[0, 1].map((side) => {
-                          const src = spreads[page]?.[side] ?? null;
-                          return (
-                            <div
-                              key={side}
-                              className="w-full h-full bg-white flex items-center justify-center overflow-hidden border border-border/30"
-                            >
-                              {src ? (
-                                <img
-                                  src={src}
-                                  alt={`${project.title} — spread ${page + 1} ${side === 0 ? "left" : "right"}`}
-                                  className="w-full h-full object-contain block"
-                                />
-                              ) : null}
-                            </div>
-                          );
-                        })}
-                      </div>
+                      {imagesAreSpreads ? (
+                        <img
+                          src={spreads[page]?.[0] ?? ""}
+                          alt={`${project.title} — spread ${page + 1}`}
+                          className="max-w-full max-h-[75vh] w-auto h-auto object-contain block shadow-md bg-white"
+                        />
+                      ) : (
+                        <div
+                          className="grid grid-cols-2 gap-0 shadow-md bg-white"
+                          style={{ width: "min(100%, 1000px)", aspectRatio: "2 / 1.4" }}
+                        >
+                          {[0, 1].map((side) => {
+                            const src = spreads[page]?.[side] ?? null;
+                            return (
+                              <div
+                                key={side}
+                                className="w-full h-full bg-white flex items-center justify-center overflow-hidden border border-border/30"
+                              >
+                                {src ? (
+                                  <img
+                                    src={src}
+                                    alt={`${project.title} — spread ${page + 1} ${side === 0 ? "left" : "right"}`}
+                                    className="w-full h-full object-contain block"
+                                  />
+                                ) : null}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
                     </motion.div>
                   </AnimatePresence>
                 </div>
