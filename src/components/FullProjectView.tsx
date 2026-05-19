@@ -99,18 +99,36 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
               </h3>
 
               <div className="retro-inset bg-background p-4 md:p-6 flex flex-col items-center">
-                <div className="w-full flex justify-center mb-4 min-h-[300px]">
-                  <img
-                    key={gallery[page]}
-                    src={gallery[page]}
-                    alt={`${project.title} — page ${page + 1}`}
-                    className="max-w-full max-h-[75vh] w-auto h-auto object-contain block shadow-md"
-                  />
+                <div className="w-full flex justify-center mb-4 min-h-[300px] overflow-hidden">
+                  <AnimatePresence initial={false} custom={direction} mode="wait">
+                    <motion.img
+                      key={gallery[page]}
+                      src={gallery[page]}
+                      alt={`${project.title} — page ${page + 1}`}
+                      custom={direction}
+                      variants={{
+                        enter: (dir: number) => ({
+                          x: dir > 0 ? 80 : -80,
+                          opacity: 0,
+                        }),
+                        center: { x: 0, opacity: 1 },
+                        exit: (dir: number) => ({
+                          x: dir > 0 ? -80 : 80,
+                          opacity: 0,
+                        }),
+                      }}
+                      initial="enter"
+                      animate="center"
+                      exit="exit"
+                      transition={{ duration: 0.25, ease: "easeInOut" }}
+                      className="max-w-full max-h-[75vh] w-auto h-auto object-contain block shadow-md"
+                    />
+                  </AnimatePresence>
                 </div>
 
                 <div className="w-full flex items-center justify-between gap-3 mt-2">
                   <button
-                    onClick={() => setPage((p) => Math.max(p - 1, 0))}
+                    onClick={goPrev}
                     disabled={page === 0}
                     className="retro-outset bg-primary px-4 py-2 text-[13px] md:text-[12px] font-retro text-foreground hover:brightness-95 active:retro-inset disabled:opacity-40 disabled:cursor-not-allowed"
                   >
@@ -122,7 +140,7 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
                   </div>
 
                   <button
-                    onClick={() => setPage((p) => Math.min(p + 1, gallery.length - 1))}
+                    onClick={goNext}
                     disabled={page === gallery.length - 1}
                     className="retro-outset bg-primary px-4 py-2 text-[13px] md:text-[12px] font-retro text-foreground hover:brightness-95 active:retro-inset disabled:opacity-40 disabled:cursor-not-allowed"
                   >
@@ -130,14 +148,17 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
                   </button>
                 </div>
 
-                {/* Page slider for quick jump */}
                 {gallery.length > 2 && (
                   <input
                     type="range"
                     min={0}
                     max={gallery.length - 1}
                     value={page}
-                    onChange={(e) => setPage(Number(e.target.value))}
+                    onChange={(e) => {
+                      const next = Number(e.target.value);
+                      setDirection(next > page ? 1 : -1);
+                      setPage(next);
+                    }}
                     className="w-full mt-4 accent-foreground"
                     aria-label="Jump to page"
                   />
