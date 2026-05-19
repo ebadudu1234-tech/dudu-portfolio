@@ -14,14 +14,21 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
   const gallery = project.detailImages || project.images || [];
   const isBook = BOOK_CATEGORIES.includes(project.category) && gallery.length > 0;
 
-  // Build spreads: cover alone (blank + page[0]), then pairs, last page padded with blank if needed.
+  // If each uploaded image is already a full 2-page spread, show them 1:1.
+  // Otherwise build spreads: cover (blank + page[0]) + pairs + tail blank.
+  const imagesAreSpreads = project.imagesAreSpreads === true;
   const spreads: Array<[string | null, string | null]> = [];
   if (gallery.length > 0) {
-    spreads.push([null, gallery[0]]);
-    for (let i = 1; i < gallery.length; i += 2) {
-      spreads.push([gallery[i], i + 1 < gallery.length ? gallery[i + 1] : null]);
+    if (imagesAreSpreads) {
+      for (const img of gallery) spreads.push([img, null]);
+    } else {
+      spreads.push([null, gallery[0]]);
+      for (let i = 1; i < gallery.length; i += 2) {
+        spreads.push([gallery[i], i + 1 < gallery.length ? gallery[i + 1] : null]);
+      }
     }
   }
+
 
   const [page, setPage] = useState(0);
   const [direction, setDirection] = useState(0);
