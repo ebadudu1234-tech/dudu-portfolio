@@ -14,14 +14,21 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
   const gallery = project.detailImages || project.images || [];
   const isBook = BOOK_CATEGORIES.includes(project.category) && gallery.length > 0;
 
-  // Build spreads: cover alone (blank + page[0]), then pairs, last page padded with blank if needed.
+  // If each uploaded image is already a full 2-page spread, show them 1:1.
+  // Otherwise build spreads: cover (blank + page[0]) + pairs + tail blank.
+  const imagesAreSpreads = project.imagesAreSpreads === true;
   const spreads: Array<[string | null, string | null]> = [];
   if (gallery.length > 0) {
-    spreads.push([null, gallery[0]]);
-    for (let i = 1; i < gallery.length; i += 2) {
-      spreads.push([gallery[i], i + 1 < gallery.length ? gallery[i + 1] : null]);
+    if (imagesAreSpreads) {
+      for (const img of gallery) spreads.push([img, null]);
+    } else {
+      spreads.push([null, gallery[0]]);
+      for (let i = 1; i < gallery.length; i += 2) {
+        spreads.push([gallery[i], i + 1 < gallery.length ? gallery[i + 1] : null]);
+      }
     }
   }
+
 
   const [page, setPage] = useState(0);
   const [direction, setDirection] = useState(0);
@@ -124,28 +131,36 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
                       transition={{ duration: 0.25, ease: "easeInOut" }}
                       className="w-full flex justify-center"
                     >
-                      <div
-                        className="grid grid-cols-2 gap-0 shadow-md bg-white"
-                        style={{ width: "min(100%, 1000px)", aspectRatio: "2 / 1.4" }}
-                      >
-                        {[0, 1].map((side) => {
-                          const src = spreads[page]?.[side] ?? null;
-                          return (
-                            <div
-                              key={side}
-                              className="w-full h-full bg-white flex items-center justify-center overflow-hidden border border-border/30"
-                            >
-                              {src ? (
-                                <img
-                                  src={src}
-                                  alt={`${project.title} — spread ${page + 1} ${side === 0 ? "left" : "right"}`}
-                                  className="w-full h-full object-contain block"
-                                />
-                              ) : null}
-                            </div>
-                          );
-                        })}
-                      </div>
+                      {imagesAreSpreads ? (
+                        <img
+                          src={spreads[page]?.[0] ?? ""}
+                          alt={`${project.title} — spread ${page + 1}`}
+                          className="max-w-full max-h-[75vh] w-auto h-auto object-contain block shadow-md bg-white"
+                        />
+                      ) : (
+                        <div
+                          className="grid grid-cols-2 gap-0 shadow-md bg-white"
+                          style={{ width: "min(100%, 1000px)", aspectRatio: "2 / 1.4" }}
+                        >
+                          {[0, 1].map((side) => {
+                            const src = spreads[page]?.[side] ?? null;
+                            return (
+                              <div
+                                key={side}
+                                className="w-full h-full bg-white flex items-center justify-center overflow-hidden border border-border/30"
+                              >
+                                {src ? (
+                                  <img
+                                    src={src}
+                                    alt={`${project.title} — spread ${page + 1} ${side === 0 ? "left" : "right"}`}
+                                    className="w-full h-full object-contain block"
+                                  />
+                                ) : null}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
                     </motion.div>
                   </AnimatePresence>
                 </div>

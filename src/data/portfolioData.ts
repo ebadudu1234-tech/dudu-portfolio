@@ -16,6 +16,8 @@ export interface ProjectItem {
   heroImage?: string;       // Large hero image for full view
   fullDescription: string;  // Long-form description / case study text
   detailImages?: string[];  // Additional gallery images for full view
+  imagesAreSpreads?: boolean; // If true (book projects), each image is already a 2-page spread
+
 
   // Legacy / shared
   description?: string;     // (kept for backward compat, optional)
