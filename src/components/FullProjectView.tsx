@@ -73,6 +73,23 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
             {project.fullDescription || project.description}
           </p>
 
+          {showPdfReader && (
+            <div className="mb-6">
+              <h3 className="text-[15px] md:text-[14px] font-bold text-foreground border-b border-border pb-1 mb-3">
+                Read Publication
+              </h3>
+              <div className="retro-inset overflow-hidden h-[80vh] bg-card">
+                <object data={`${project.link}#toolbar=0&navpanes=0&view=FitH`} type="application/pdf" className="w-full h-full">
+                  <iframe
+                    src={`${project.link}#toolbar=0&navpanes=0&view=FitH`}
+                    title={`${project.title} PDF`}
+                    className="w-full h-full block border-0 bg-card"
+                  />
+                </object>
+              </div>
+            </div>
+          )}
+
           {project.link && (
             <a
               href={project.link}
@@ -80,7 +97,7 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
               rel="noopener noreferrer"
               className="inline-block retro-outset bg-primary px-5 py-2 text-[13px] md:text-[12px] font-retro text-foreground hover:brightness-95 active:retro-inset mb-6"
             >
-              Visit Project →
+              {linkIsPdf ? "Open PDF ↗" : "Visit Project →"}
             </a>
           )}
 
