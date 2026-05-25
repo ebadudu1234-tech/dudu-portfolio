@@ -280,13 +280,13 @@ const printDesignProjects: ProjectItem[] = [
     title: "Myth3",
     year: "2025",
     category: "Print Design",
-    thumbnail: "/images/print/myth3/Myth3_Spreads_Page_heropage.jpg",
+    thumbnail: "/images/print/myths/Myth3_Speards_Page_heropage.jpg",
     shortDescription:
       "A print editorial project presented as a complete publication, focusing on sequencing, image-text relationships, and long-form narrative pacing.",
-    heroImage: "/images/print/myth3/Myth3_Spreads_Page_heropage.jpg",
+    heroImage: "/images/print/myths/Myth3_Speards_Page_heropage.jpg",
     fullDescription:
       "Myth3 is a print editorial project developed as a complete publication and now presented in PDF format. The project explores narrative pacing, visual sequencing, and the relationship between text, image, and layout across a long-form reading experience.\n\nInstead of presenting each spread as a separate image, this project is organized as a unified publication so the reading flow can be experienced more naturally. The work moves between image-led and text-led compositions, creating a layered editorial rhythm throughout the book.\n\nThis project focuses on how publication design can guide attention, structure atmosphere, and build continuity across a full reading sequence.",
-    link: "/images/print/myth3/Myth3_Spreads.pdf",
+    link: "/images/print/myths/Myth3_Speards.pdf",
   },
 ];
 
