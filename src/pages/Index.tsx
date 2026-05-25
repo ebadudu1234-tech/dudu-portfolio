@@ -129,13 +129,13 @@ const Index = () => {
           <DesktopIcon
             label="Macintosh HD"
             icon={macintoshHd}
-            position={{ top: "16px", right: "24px" }}
+            position={{ top: "56px", right: "28px" }}
             onDoubleClick={handleOpenMacintoshHD}
           />
           <DesktopIcon
             label="Video Player"
             icon={videoPlayerIcon}
-            position={{ top: "120px", right: "24px" }}
+            position={{ top: "150px", right: "28px" }}
             onDoubleClick={handleOpenVideoPlayer}
           />
 
