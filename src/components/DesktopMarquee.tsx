@@ -1,56 +1,50 @@
-import { useEffect, useState } from "react";
-
 const MESSAGES = [
-  "Zihe Wang — Designer from China, focused on branding, print, UI, game, and interactive design.",
-  "This portfolio website is inspired by the look and feeling of early computer screens.",
-  "You can explore my different projects by clicking the desktop icons.",
+  "Zihe Wang — Designer from China.",
+  "Inspired by early computer screens.",
+  "Click the desktop icons to view my work.",
 ];
 
+const ITEM_HEIGHT = 32; // px per line
+const VISIBLE = 1;
+
 const DesktopMarquee = () => {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setIndex((i) => (i + 1) % MESSAGES.length);
-    }, 3800);
-    return () => clearInterval(id);
-  }, []);
-
-  const len = MESSAGES.length;
-  const items = [
-    { text: MESSAGES[(index - 1 + len) % len], role: "top" as const },
-    { text: MESSAGES[index], role: "center" as const },
-    { text: MESSAGES[(index + 1) % len], role: "bottom" as const },
-  ];
+  // Duplicate the list to create a seamless vertical loop
+  const loop = [...MESSAGES, ...MESSAGES];
+  const totalHeight = MESSAGES.length * ITEM_HEIGHT;
+  const duration = MESSAGES.length * 3.2; // seconds
 
   return (
-    <div
-      className="absolute bottom-[72px] md:bottom-[68px] left-3 md:left-5 z-[5] pointer-events-none
-                 w-[78vw] max-w-[460px] min-w-[240px] flex flex-col gap-2 md:gap-2.5"
-    >
-      {items.map((item, i) => {
-        const isCenter = item.role === "center";
-        return (
-          <div
-            key={`${i}-${item.text}`}
-            className={`retro-outset bg-[hsl(var(--card))] px-3 py-1.5 md:py-2 overflow-hidden
-                        transition-all duration-700 ease-out
-                        ${isCenter ? "opacity-100" : "opacity-50"}`}
-            style={{
-              transform: isCenter ? "translateY(0) scale(1)" : "translateY(0) scale(0.97)",
-            }}
-          >
-            <p
-              className={`font-retro text-foreground whitespace-nowrap overflow-hidden text-ellipsis
-                          ${isCenter
-                            ? "text-[14px] md:text-[16px] font-semibold"
-                            : "text-[12px] md:text-[13px]"}`}
+    <div className="absolute bottom-[72px] md:bottom-[68px] left-3 md:left-5 z-[5] pointer-events-none inline-flex">
+      <div
+        className="retro-outset bg-[hsl(var(--card))] px-4 py-2 overflow-hidden"
+        style={{ height: `${VISIBLE * ITEM_HEIGHT}px` }}
+      >
+        <div
+          className="flex flex-col"
+          style={{
+            animation: `marquee-vertical ${duration}s linear infinite`,
+          }}
+        >
+          {loop.map((text, i) => (
+            <div
+              key={i}
+              className="flex items-center"
+              style={{ height: `${ITEM_HEIGHT}px` }}
             >
-              {item.text}
-            </p>
-          </div>
-        );
-      })}
+              <p className="font-retro text-foreground text-[14px] md:text-[15px] whitespace-nowrap leading-none">
+                {text}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <style>{`
+        @keyframes marquee-vertical {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(-${totalHeight}px); }
+        }
+      `}</style>
     </div>
   );
 };
