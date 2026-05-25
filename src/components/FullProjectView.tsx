@@ -24,6 +24,8 @@ const MediaView = ({ src, alt, className, fit = "cover" }: { src: string; alt: s
 const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
   const heroImage = project.heroImage || project.thumbnail || (project.images && project.images[0]);
   const gallery = project.detailImages || project.images || [];
+  const linkIsPdf = !!project.link && isPdf(project.link);
+  const showPdfReader = linkIsPdf && gallery.length === 0;
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
