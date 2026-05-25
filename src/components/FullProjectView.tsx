@@ -1,5 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect } from "react";
 import { type ProjectItem } from "@/data/portfolioData";
 
 interface FullProjectViewProps {
@@ -7,41 +6,17 @@ interface FullProjectViewProps {
   onClose: () => void;
 }
 
-const BOOK_CATEGORIES = ["Print Design", "Book Design"];
-
 const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
   const heroImage = project.heroImage || project.thumbnail || (project.images && project.images[0]);
   const gallery = project.detailImages || project.images || [];
-  const isBook = BOOK_CATEGORIES.includes(project.category) && gallery.length > 0;
-
-  const [page, setPage] = useState(0);
-  const [direction, setDirection] = useState(0);
 
   useEffect(() => {
-    setPage(0);
-    setDirection(0);
-  }, [project.id]);
-
-  const goNext = useCallback(() => {
-    setDirection(1);
-    setPage((p) => Math.min(p + 1, gallery.length - 1));
-  }, [gallery.length]);
-
-  const goPrev = useCallback(() => {
-    setDirection(-1);
-    setPage((p) => Math.max(p - 1, 0));
-  }, []);
-
-  useEffect(() => {
-    if (!isBook) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight") goNext();
-      if (e.key === "ArrowLeft") goPrev();
       if (e.key === "Escape") onClose();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [isBook, onClose, goNext, goPrev]);
+  }, [onClose]);
 
   return (
     <div className="fixed inset-0 z-[9999] flex flex-col" style={{ background: "hsl(var(--primary))" }}>
@@ -92,88 +67,7 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
             </a>
           )}
 
-          {gallery.length > 0 && isBook && (
-            <div className="mb-6">
-              <h3 className="text-[15px] md:text-[14px] font-bold text-foreground border-b border-border pb-1 mb-4">
-                Book Reader
-              </h3>
-
-              <div className="retro-inset bg-background p-4 md:p-6 flex flex-col items-center">
-                <div className="w-full flex justify-center mb-4 min-h-[300px] overflow-hidden select-none">
-                  <AnimatePresence initial={false} custom={direction} mode="wait">
-                    <motion.img
-                      key={gallery[page]}
-                      src={gallery[page]}
-                      alt={`${project.title} — page ${page + 1}`}
-                      custom={direction}
-                      variants={{
-                        enter: (dir: number) => ({ x: dir > 0 ? 80 : -80, opacity: 0 }),
-                        center: { x: 0, opacity: 1 },
-                        exit: (dir: number) => ({ x: dir > 0 ? -80 : 80, opacity: 0 }),
-                      }}
-                      initial="enter"
-                      animate="center"
-                      exit="exit"
-                      transition={{ duration: 0.25, ease: "easeInOut" }}
-                      drag="x"
-                      dragConstraints={{ left: 0, right: 0 }}
-                      dragElastic={0.6}
-                      onDragEnd={(_, info) => {
-                        const threshold = 80;
-                        if (info.offset.x < -threshold && page < gallery.length - 1) {
-                          goNext();
-                        } else if (info.offset.x > threshold && page > 0) {
-                          goPrev();
-                        }
-                      }}
-                      draggable={false}
-                      className="max-w-full max-h-[75vh] w-auto h-auto object-contain block shadow-md cursor-grab active:cursor-grabbing"
-                    />
-                  </AnimatePresence>
-                </div>
-
-                <div className="w-full flex items-center justify-between gap-3 mt-2">
-                  <button
-                    onClick={goPrev}
-                    disabled={page === 0}
-                    className="retro-outset bg-primary px-4 py-2 text-[13px] md:text-[12px] font-retro text-foreground hover:brightness-95 active:retro-inset disabled:opacity-40 disabled:cursor-not-allowed"
-                  >
-                    ← Previous
-                  </button>
-
-                  <div className="text-[13px] md:text-[12px] font-retro text-foreground tabular-nums">
-                    Page {page + 1} / {gallery.length}
-                  </div>
-
-                  <button
-                    onClick={goNext}
-                    disabled={page === gallery.length - 1}
-                    className="retro-outset bg-primary px-4 py-2 text-[13px] md:text-[12px] font-retro text-foreground hover:brightness-95 active:retro-inset disabled:opacity-40 disabled:cursor-not-allowed"
-                  >
-                    Next →
-                  </button>
-                </div>
-
-                {gallery.length > 2 && (
-                  <input
-                    type="range"
-                    min={0}
-                    max={gallery.length - 1}
-                    value={page}
-                    onChange={(e) => {
-                      const next = Number(e.target.value);
-                      setDirection(next > page ? 1 : -1);
-                      setPage(next);
-                    }}
-                    className="w-full mt-4 accent-foreground"
-                    aria-label="Jump to page"
-                  />
-                )}
-              </div>
-            </div>
-          )}
-
-          {gallery.length > 0 && !isBook && (
+          {gallery.length > 0 && (
             <div className="flex flex-col gap-6 mb-6">
               <h3 className="text-[15px] md:text-[14px] font-bold text-foreground border-b border-border pb-1">
                 Project Gallery
@@ -196,7 +90,7 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
       </div>
 
       <div className="h-[24px] md:h-[22px] shrink-0 flex items-center px-3 text-[12px] md:text-[11px] font-retro text-muted-foreground border-t border-border" style={{ background: "hsl(var(--primary))" }}>
-        {project.title} — Full Project View{isBook ? ` — Page ${page + 1} / ${gallery.length}` : ""}
+        {project.title} — Full Project View
       </div>
     </div>
   );
