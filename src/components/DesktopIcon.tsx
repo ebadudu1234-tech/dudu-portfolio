@@ -85,13 +85,13 @@ const DesktopIcon = ({ label, icon, position = {}, onDoubleClick }: DesktopIconP
       }}
     >
       <motion.div
-        className={`w-[76px] h-[76px] md:w-[72px] md:h-[72px] flex items-center justify-center ${
+        className={`w-[52px] h-[52px] md:w-[48px] md:h-[48px] flex items-center justify-center ${
           selected ? "brightness-75 contrast-125" : ""
         }`}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
-        <img src={icon} alt={label} className="w-[68px] h-[68px] md:w-[64px] md:h-[64px] object-contain" draggable={false} />
+        <img src={icon} alt={label} className="w-[46px] h-[46px] md:w-[42px] md:h-[42px] object-contain" draggable={false} />
       </motion.div>
       <span
         className={`text-[13px] md:text-[12px] font-retro px-2 py-0.5 leading-tight text-center max-w-[100px] ${
