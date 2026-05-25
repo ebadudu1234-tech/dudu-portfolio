@@ -92,36 +92,36 @@ const brandDesignProjects: ProjectItem[] = [
       "/images/brand/yiwugo/YIWUGO-3_Page_07.jpg",
     ],
   },
-{
-  id: "bd-2",
-  title: "UNGREEN SHOP — Branding & Packaging System",
-  year: "2024",
-  category: "Brand Design",
-  thumbnail: "/images/brand/ungreen-shop/ungreen-3_Page_08.jpg",
-  shortDescription:
-    "A branding project for UNGREEN SHOP, combining visual identity, packaging design, poster design, motion graphics, and final product applications around the theme of food additives.",
-  heroImage: "/images/brand/ungreen-shop/ungreen-3_Page_08.jpg",
-  fullDescription:
-    "UNGREEN SHOP is a branding and packaging design project developed around the topic of food additives and public perception of food safety. Instead of simply rejecting additives, the project rethinks how branding can communicate a more nuanced and critical understanding of what additives mean in contemporary consumption.\n\nThe project includes background research, questionnaire analysis, concept development, visual experiments, type design, logo design, poster design, packaging systems, motion graphics, and final product applications. Through bright synthetic colors, inflated letterforms, and a deliberately exaggerated visual language, the brand turns anxiety around additives into an eye-catching and discussable consumer experience.\n\nThis project explores how contemporary brand design can combine research, cultural commentary, and commercial aesthetics to create a system that is playful, provocative, and visually memorable.",
-  detailImages: [
-    "/images/brand/ungreen-shop/ungreen-3_Page_08.jpg",
-    "/images/brand/ungreen-shop/ungreen-3_Page_09.jpg",
-    "/images/brand/ungreen-shop/ungreen-3_Page_10.jpg",
-    "/images/brand/ungreen-shop/ungreen-3_Page_11.jpg",
-    "/images/brand/ungreen-shop/ungreen-3_Page_12.jpg",
-    "/images/brand/ungreen-shop/ungreen-3_Page_13.jpg",
-    "/images/brand/ungreen-shop/ungreen-3_Page_14.jpg",
-  ],
-  images: [
-    "/images/brand/ungreen-shop/ungreen-3_Page_08.jpg",
-    "/images/brand/ungreen-shop/ungreen-3_Page_09.jpg",
-    "/images/brand/ungreen-shop/ungreen-3_Page_10.jpg",
-    "/images/brand/ungreen-shop/ungreen-3_Page_11.jpg",
-    "/images/brand/ungreen-shop/ungreen-3_Page_12.jpg",
-    "/images/brand/ungreen-shop/ungreen-3_Page_13.jpg",
-    "/images/brand/ungreen-shop/ungreen-3_Page_14.jpg",
-  ],
-},
+  {
+    id: "bd-2",
+    title: "UNGREEN SHOP — Branding & Packaging System",
+    year: "2024",
+    category: "Brand Design",
+    thumbnail: "/images/brand/ungreen-shop/ungreen-3_Page_08.jpg",
+    shortDescription:
+      "A branding project for UNGREEN SHOP, combining visual identity, packaging design, poster design, motion graphics, and final product applications around the theme of food additives.",
+    heroImage: "/images/brand/ungreen-shop/ungreen-3_Page_08.jpg",
+    fullDescription:
+      "UNGREEN SHOP is a branding and packaging design project developed around the topic of food additives and public perception of food safety. Instead of simply rejecting additives, the project rethinks how branding can communicate a more nuanced and critical understanding of what additives mean in contemporary consumption.\n\nThe project includes background research, questionnaire analysis, concept development, visual experiments, type design, logo design, poster design, packaging systems, motion graphics, and final product applications. Through bright synthetic colors, inflated letterforms, and a deliberately exaggerated visual language, the brand turns anxiety around additives into an eye-catching and discussable consumer experience.\n\nThis project explores how contemporary brand design can combine research, cultural commentary, and commercial aesthetics to create a system that is playful, provocative, and visually memorable.",
+    detailImages: [
+      "/images/brand/ungreen-shop/ungreen-3_Page_08.jpg",
+      "/images/brand/ungreen-shop/ungreen-3_Page_09.jpg",
+      "/images/brand/ungreen-shop/ungreen-3_Page_10.jpg",
+      "/images/brand/ungreen-shop/ungreen-3_Page_11.jpg",
+      "/images/brand/ungreen-shop/ungreen-3_Page_12.jpg",
+      "/images/brand/ungreen-shop/ungreen-3_Page_13.jpg",
+      "/images/brand/ungreen-shop/ungreen-3_Page_14.jpg",
+    ],
+    images: [
+      "/images/brand/ungreen-shop/ungreen-3_Page_08.jpg",
+      "/images/brand/ungreen-shop/ungreen-3_Page_09.jpg",
+      "/images/brand/ungreen-shop/ungreen-3_Page_10.jpg",
+      "/images/brand/ungreen-shop/ungreen-3_Page_11.jpg",
+      "/images/brand/ungreen-shop/ungreen-3_Page_12.jpg",
+      "/images/brand/ungreen-shop/ungreen-3_Page_13.jpg",
+      "/images/brand/ungreen-shop/ungreen-3_Page_14.jpg",
+    ],
+  },
   {
     id: "bd-3",
     title: "Studio Flux Rebrand",
@@ -454,6 +454,7 @@ const uiDesignProjects: ProjectItem[] = [
     fullDescription:
       "Designed a dashboard interface for creatives to organize projects, assets, and presentations. Emphasis on usability, visual balance, and scalable components.\n\nThe dashboard supports drag-and-drop project organization, asset tagging, and presentation mode. The component library was built with reusability in mind, using a strict design token system.\n\nPrototyped in Figma with full interactive flows and micro-interactions.",
   },
+];
 
 // --------------- INTERACTIVE INSTALLATIONS ---------------
 
