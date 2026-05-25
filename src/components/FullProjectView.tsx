@@ -54,8 +54,8 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
       <div className="flex-1 overflow-auto retro-inset m-[2px] bg-card">
         <div className="max-w-[1000px] mx-auto p-6 md:p-8 font-retro">
           {heroImage && (
-            <div className="retro-inset mb-6 overflow-hidden aspect-[4/3]">
-              <img src={heroImage} alt={project.title} className="w-full h-full object-cover block" />
+            <div className={`retro-inset mb-6 overflow-hidden ${isPdf(heroImage) ? "aspect-[3/4] md:aspect-[4/3]" : "aspect-[4/3]"}`}>
+              <MediaView src={heroImage} alt={project.title} fit={isPdf(heroImage) ? "contain" : "cover"} />
             </div>
           )}
 
