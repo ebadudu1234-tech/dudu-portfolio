@@ -6,6 +6,21 @@ interface FullProjectViewProps {
   onClose: () => void;
 }
 
+const isPdf = (src: string) => /\.pdf($|\?|#)/i.test(src);
+
+const MediaView = ({ src, alt, className, fit = "cover" }: { src: string; alt: string; className?: string; fit?: "cover" | "contain" }) => {
+  if (isPdf(src)) {
+    return (
+      <iframe
+        src={`${src}#toolbar=0&navpanes=0&view=FitH`}
+        title={alt}
+        className={`w-full h-full block border-0 bg-card ${className || ""}`}
+      />
+    );
+  }
+  return <img src={src} alt={alt} className={`w-full h-full ${fit === "cover" ? "object-cover" : "object-contain"} block ${className || ""}`} />;
+};
+
 const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
   const heroImage = project.heroImage || project.thumbnail || (project.images && project.images[0]);
   const gallery = project.detailImages || project.images || [];
@@ -39,8 +54,8 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
       <div className="flex-1 overflow-auto retro-inset m-[2px] bg-card">
         <div className="max-w-[1000px] mx-auto p-6 md:p-8 font-retro">
           {heroImage && (
-            <div className="retro-inset mb-6 overflow-hidden aspect-[4/3]">
-              <img src={heroImage} alt={project.title} className="w-full h-full object-cover block" />
+            <div className={`retro-inset mb-6 overflow-hidden ${isPdf(heroImage) ? "aspect-[3/4] md:aspect-[4/3]" : "aspect-[4/3]"}`}>
+              <MediaView src={heroImage} alt={project.title} fit={isPdf(heroImage) ? "contain" : "cover"} />
             </div>
           )}
 
@@ -72,9 +87,17 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
               <h3 className="text-[15px] md:text-[14px] font-bold text-foreground border-b border-border pb-1">
                 Project Gallery
               </h3>
-              {gallery.map((img, i) => (
-                <div key={i} className="retro-inset overflow-hidden">
-                  <img src={img} alt={`${project.title} detail ${i + 1}`} className="w-full h-auto block" />
+              {gallery.map((src, i) => (
+                <div key={i} className={`retro-inset overflow-hidden ${isPdf(src) ? "h-[80vh]" : ""}`}>
+                  {isPdf(src) ? (
+                    <iframe
+                      src={`${src}#toolbar=0&navpanes=0&view=FitH`}
+                      title={`${project.title} detail ${i + 1}`}
+                      className="w-full h-full block border-0 bg-card"
+                    />
+                  ) : (
+                    <img src={src} alt={`${project.title} detail ${i + 1}`} className="w-full h-auto block" />
+                  )}
                 </div>
               ))}
             </div>
