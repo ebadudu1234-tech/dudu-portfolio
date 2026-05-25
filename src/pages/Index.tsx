@@ -162,6 +162,8 @@ const Index = () => {
           ))}
         </div>
 
+        <DesktopMarquee />
+
         <Dock onFinderClick={handleOpenMacintoshHD} />
       </div>
 
