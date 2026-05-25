@@ -87,9 +87,17 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
               <h3 className="text-[15px] md:text-[14px] font-bold text-foreground border-b border-border pb-1">
                 Project Gallery
               </h3>
-              {gallery.map((img, i) => (
-                <div key={i} className="retro-inset overflow-hidden">
-                  <img src={img} alt={`${project.title} detail ${i + 1}`} className="w-full h-auto block" />
+              {gallery.map((src, i) => (
+                <div key={i} className={`retro-inset overflow-hidden ${isPdf(src) ? "h-[80vh]" : ""}`}>
+                  {isPdf(src) ? (
+                    <iframe
+                      src={`${src}#toolbar=0&navpanes=0&view=FitH`}
+                      title={`${project.title} detail ${i + 1}`}
+                      className="w-full h-full block border-0 bg-card"
+                    />
+                  ) : (
+                    <img src={src} alt={`${project.title} detail ${i + 1}`} className="w-full h-auto block" />
+                  )}
                 </div>
               ))}
             </div>
