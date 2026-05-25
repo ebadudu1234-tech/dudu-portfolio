@@ -22,7 +22,15 @@ const ProjectDetail = ({ project, onViewFullProject }: ProjectDetailProps) => {
     <div className="p-5 font-retro">
       {coverImage && (
         <div className="retro-inset mb-4 overflow-hidden aspect-[4/3]">
-          <img src={coverImage} alt={project.title} className="w-full h-full object-cover block" />
+          {/\.pdf($|\?|#)/i.test(coverImage) ? (
+            <iframe
+              src={`${coverImage}#toolbar=0&navpanes=0&view=FitH`}
+              title={project.title}
+              className="w-full h-full block border-0 bg-card"
+            />
+          ) : (
+            <img src={coverImage} alt={project.title} className="w-full h-full object-cover block" />
+          )}
         </div>
       )}
 
