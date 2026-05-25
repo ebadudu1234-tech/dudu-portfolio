@@ -6,6 +6,21 @@ interface FullProjectViewProps {
   onClose: () => void;
 }
 
+const isPdf = (src: string) => /\.pdf($|\?|#)/i.test(src);
+
+const MediaView = ({ src, alt, className, fit = "cover" }: { src: string; alt: string; className?: string; fit?: "cover" | "contain" }) => {
+  if (isPdf(src)) {
+    return (
+      <iframe
+        src={`${src}#toolbar=0&navpanes=0&view=FitH`}
+        title={alt}
+        className={`w-full h-full block border-0 bg-card ${className || ""}`}
+      />
+    );
+  }
+  return <img src={src} alt={alt} className={`w-full h-full ${fit === "cover" ? "object-cover" : "object-contain"} block ${className || ""}`} />;
+};
+
 const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
   const heroImage = project.heroImage || project.thumbnail || (project.images && project.images[0]);
   const gallery = project.detailImages || project.images || [];
