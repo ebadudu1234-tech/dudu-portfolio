@@ -99,7 +99,7 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
               </h3>
 
               <div className="retro-inset bg-background p-4 md:p-6 flex flex-col items-center">
-                <div className="w-full flex justify-center mb-4 min-h-[300px] overflow-hidden">
+                <div className="w-full flex justify-center mb-4 min-h-[300px] overflow-hidden select-none">
                   <AnimatePresence initial={false} custom={direction} mode="wait">
                     <motion.img
                       key={gallery[page]}
@@ -107,21 +107,27 @@ const FullProjectView = ({ project, onClose }: FullProjectViewProps) => {
                       alt={`${project.title} — page ${page + 1}`}
                       custom={direction}
                       variants={{
-                        enter: (dir: number) => ({
-                          x: dir > 0 ? 80 : -80,
-                          opacity: 0,
-                        }),
+                        enter: (dir: number) => ({ x: dir > 0 ? 80 : -80, opacity: 0 }),
                         center: { x: 0, opacity: 1 },
-                        exit: (dir: number) => ({
-                          x: dir > 0 ? -80 : 80,
-                          opacity: 0,
-                        }),
+                        exit: (dir: number) => ({ x: dir > 0 ? -80 : 80, opacity: 0 }),
                       }}
                       initial="enter"
                       animate="center"
                       exit="exit"
                       transition={{ duration: 0.25, ease: "easeInOut" }}
-                      className="max-w-full max-h-[75vh] w-auto h-auto object-contain block shadow-md"
+                      drag="x"
+                      dragConstraints={{ left: 0, right: 0 }}
+                      dragElastic={0.6}
+                      onDragEnd={(_, info) => {
+                        const threshold = 80;
+                        if (info.offset.x < -threshold && page < gallery.length - 1) {
+                          goNext();
+                        } else if (info.offset.x > threshold && page > 0) {
+                          goPrev();
+                        }
+                      }}
+                      draggable={false}
+                      className="max-w-full max-h-[75vh] w-auto h-auto object-contain block shadow-md cursor-grab active:cursor-grabbing"
                     />
                   </AnimatePresence>
                 </div>
