@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 const MESSAGES = [
   "Zihe Wang — Designer from China, focused on branding, print, UI, game, and interactive design.",
   "This portfolio website is inspired by the look and feeling of early computer screens.",
@@ -5,18 +7,50 @@ const MESSAGES = [
 ];
 
 const DesktopMarquee = () => {
-  const text = MESSAGES.join("   ◆   ");
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setIndex((i) => (i + 1) % MESSAGES.length);
+    }, 3800);
+    return () => clearInterval(id);
+  }, []);
+
+  const len = MESSAGES.length;
+  const items = [
+    { text: MESSAGES[(index - 1 + len) % len], role: "top" as const },
+    { text: MESSAGES[index], role: "center" as const },
+    { text: MESSAGES[(index + 1) % len], role: "bottom" as const },
+  ];
+
   return (
     <div
-      className="absolute bottom-[70px] md:bottom-[64px] left-3 md:left-4 z-[5] pointer-events-none
-                 w-[60vw] max-w-[520px] min-w-[220px]"
+      className="absolute bottom-[72px] md:bottom-[68px] left-3 md:left-5 z-[5] pointer-events-none
+                 w-[78vw] max-w-[460px] min-w-[240px] flex flex-col gap-2 md:gap-2.5"
     >
-      <div className="retro-outset bg-[hsl(var(--card))] px-2 py-1 overflow-hidden">
-        <div className="whitespace-nowrap animate-marquee text-[11px] md:text-[12px] font-retro text-foreground">
-          <span className="mr-12">{text}</span>
-          <span className="mr-12">{text}</span>
-        </div>
-      </div>
+      {items.map((item, i) => {
+        const isCenter = item.role === "center";
+        return (
+          <div
+            key={`${i}-${item.text}`}
+            className={`retro-outset bg-[hsl(var(--card))] px-3 py-1.5 md:py-2 overflow-hidden
+                        transition-all duration-700 ease-out
+                        ${isCenter ? "opacity-100" : "opacity-50"}`}
+            style={{
+              transform: isCenter ? "translateY(0) scale(1)" : "translateY(0) scale(0.97)",
+            }}
+          >
+            <p
+              className={`font-retro text-foreground whitespace-nowrap overflow-hidden text-ellipsis
+                          ${isCenter
+                            ? "text-[14px] md:text-[16px] font-semibold"
+                            : "text-[12px] md:text-[13px]"}`}
+            >
+              {item.text}
+            </p>
+          </div>
+        );
+      })}
     </div>
   );
 };
