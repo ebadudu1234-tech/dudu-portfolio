@@ -11,6 +11,7 @@ import BootScreen from "@/components/BootScreen";
 import { useWindowManager } from "@/hooks/useWindowManager";
 import { getFolderById, getProjectById, type ProjectItem } from "@/data/portfolioData";
 import VideoPlayer from "@/components/VideoPlayer";
+import DesktopMarquee from "@/components/DesktopMarquee";
 import macintoshHd from "@/assets/macintosh-hd.png";
 import videoPlayerIcon from "@/assets/video-player-icon.png";
 import desktopWallpaper from "@/assets/desktop-wallpaper.jpg";
@@ -160,6 +161,8 @@ const Index = () => {
             </RetroWindow>
           ))}
         </div>
+
+        <DesktopMarquee />
 
         <Dock onFinderClick={handleOpenMacintoshHD} />
       </div>
